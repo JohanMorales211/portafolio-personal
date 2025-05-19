@@ -57,7 +57,7 @@ header#home {
   margin-bottom: 0;
 }
 .header__main_name h1 {
-  font-family: var(--font-family-hero-title);
+  font-family: var(--font-family-primary);
   font-size: clamp(3rem, 10vw, 7rem);
   font-weight: 900;
   color: var(--color-text-hero-main);
@@ -67,7 +67,7 @@ header#home {
   line-height: 1.1;
 }
 .header__subtitle {
-  font-family: var(--font-family-body);
+  font-family: var(--font-family-secondary);
   font-size: clamp(0.9rem, 2.5vw, 1.2rem);
   color: var(--color-text-hero-subtitle);
   letter-spacing: 0.5px;
@@ -225,6 +225,7 @@ header#home {
 .split-parent {
   display: inline-block;
 }
+
 @media screen and (max-width: 1024px) {
   header#home {
     padding-top: 0;
@@ -250,6 +251,7 @@ header#home {
     right: 1.5rem;
   }
 }
+
 @media screen and (max-width: 600px) {
   .header__main_name h1 {
     font-size: clamp(2rem, 12vw, 4rem);
@@ -282,8 +284,12 @@ header#home {
     right: 1rem;
     gap: 0.5rem;
   }
-  .header__socials_container,
-  .scroll__down {
-    display: none;
+  .header__socials_container {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .header__socials a {
+    font-size: 1.9rem;
+    gap: 1.2rem;
   }
 }
