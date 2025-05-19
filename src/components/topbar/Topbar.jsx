@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AiOutlineHome } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineProfile } from "react-icons/ai";
 import { BiBook } from "react-icons/bi";
 import { RiBriefcase4Line } from "react-icons/ri";
 import { RiServiceLine } from "react-icons/ri";
@@ -9,7 +9,6 @@ const Topbar = ({ language }) => {
   const [activeNav, setActiveNav] = useState("#home");
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll("section[id]"));
-    const navLinks = Array.from(document.querySelectorAll("nav.app_topbar a"));
     if (sections.length === 0) return;
     const observerOptions = {
       root: null,
@@ -18,10 +17,8 @@ const Topbar = ({ language }) => {
     };
     let lastActiveSectionId = activeNav;
     const observerCallback = (entries) => {
-      let isAnySectionIntersecting = false;
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          isAnySectionIntersecting = true;
           const id = entry.target.getAttribute("id");
           if (id && `#${id}` !== lastActiveSectionId) {
             setActiveNav(`#${id}`);
@@ -44,6 +41,7 @@ const Topbar = ({ language }) => {
       specialization: "Specialization",
       work: "My Work",
       portfolio: "Portfolio",
+      proExperience: "Experience",
       contact: "Contact",
     },
     es: {
@@ -51,6 +49,7 @@ const Topbar = ({ language }) => {
       specialization: "Especialización",
       work: "Mi Trabajo",
       portfolio: "Portafolio",
+      proExperience: "Experiencia",
       contact: "Contacto",
     },
   };
@@ -58,6 +57,7 @@ const Topbar = ({ language }) => {
     <nav className="app_topbar">
       <a
         href="#home"
+        onClick={() => setActiveNav("#home")}
         className={activeNav === "#home" ? "active" : ""}
         aria-label={navContent[language].home}
       >
@@ -65,6 +65,7 @@ const Topbar = ({ language }) => {
       </a>
       <a
         href="#experience"
+        onClick={() => setActiveNav("#experience")}
         className={activeNav === "#experience" ? "active" : ""}
         aria-label={navContent[language].specialization}
       >
@@ -72,6 +73,7 @@ const Topbar = ({ language }) => {
       </a>
       <a
         href="#work"
+        onClick={() => setActiveNav("#work")}
         className={activeNav === "#work" ? "active" : ""}
         aria-label={navContent[language].work}
       >
@@ -79,13 +81,23 @@ const Topbar = ({ language }) => {
       </a>
       <a
         href="#portfolio"
+        onClick={() => setActiveNav("#portfolio")}
         className={activeNav === "#portfolio" ? "active" : ""}
         aria-label={navContent[language].portfolio}
       >
         <RiServiceLine />
       </a>
       <a
+        href="#professional-experience"
+        onClick={() => setActiveNav("#professional-experience")}
+        className={activeNav === "#professional-experience" ? "active" : ""}
+        aria-label={navContent[language].proExperience}
+      >
+        <AiOutlineProfile />
+      </a>
+      <a
         href="#contact"
+        onClick={() => setActiveNav("#contact")}
         className={activeNav === "#contact" ? "active" : ""}
         aria-label={navContent[language].contact}
       >

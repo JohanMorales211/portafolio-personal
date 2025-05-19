@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./header.css";
+import HeaderSocials from "./HeaderSocials";
 import { useSprings, animated, easings } from "@react-spring/web";
 const SplitText = ({
   text = "",
@@ -102,14 +103,14 @@ const SplitText = ({
 const Header = ({ language, onLanguageChange }) => {
   const content = {
     en: {
-      logoName: "JohanM",
+      logoName: "jmorales",
       name: "Johan Morales",
       title: "SOFTWARE ENGINEER, FULL STACK DEVELOPER.",
       asFeaturedIn: "AS FEATURED IN",
       scrollDown: "Scroll Down",
     },
     es: {
-      logoName: "JohanM",
+      logoName: "jmorales",
       name: "Johan Morales",
       title: "INGENIERO DE SOFTWARE, DESARROLLADOR FULL STACK.",
       asFeaturedIn: "PRESENTADO EN",
@@ -161,6 +162,9 @@ const Header = ({ language, onLanguageChange }) => {
         <p className={`header__subtitle ${nameAnimationComplete ? "show" : "hide"}`}>
           {content[language].title}
         </p>
+        <div className={`header__socials_container ${nameAnimationComplete ? "show" : "hide"}`}>
+          <HeaderSocials />
+        </div>
         <a href="#about" className="scroll__down_indicator" aria-label={content[language].scrollDown}>
         </a>
       </div>

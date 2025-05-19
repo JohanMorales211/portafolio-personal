@@ -3,7 +3,6 @@ import { expertiseData } from "./skillsData";
 import "./experience.css";
 import { FiServer, FiCpu, FiDatabase } from "react-icons/fi";
 import { FaReact } from "react-icons/fa";
-import { IoIosArrowUp } from "react-icons/io";
 import { BsTools, BsClipboardData } from "react-icons/bs";
 const expertiseIconComponents = {
   FiServer: FiServer,
@@ -14,7 +13,7 @@ const expertiseIconComponents = {
   BsClipboardData: BsClipboardData,
 };
 const Experience = ({ language }) => {
-  const currentExpertiseData = expertiseData[language];
+  const currentExpertiseData = expertiseData[language] || expertiseData.en;
   useEffect(() => {
     const elementsToObserve = document.querySelectorAll(".expertise__card, .other_technologies_section");
     const observerCallback = (entries, observerInstance) => {
@@ -25,10 +24,15 @@ const Experience = ({ language }) => {
         }
       });
     };
-    const observer = new IntersectionObserver(observerCallback, { threshold: 0.05 });
+    const observerOptions = {
+      threshold: 0.05,
+    };
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
     elementsToObserve.forEach((el) => observer.observe(el));
     return () => {
-      elementsToObserve.forEach((el) => { if (el) observer.unobserve(el); });
+      elementsToObserve.forEach((el) => {
+        if (el) observer.unobserve(el);
+      });
     };
   }, [currentExpertiseData, language]);
   return (
@@ -39,13 +43,13 @@ const Experience = ({ language }) => {
           <span className="expertise__section_title_dot">.</span>
         </h2>
       </div>
-      <div className="expertise__container">
+      <div className="expertise__container container">
         {currentExpertiseData.cards.map((card, index) => {
           const IconComponent = expertiseIconComponents[card.icon] || FiServer;
           return (
             <article
               className="expertise__card"
-              key={card.id}
+              key={card.id || index}
               style={{
                 '--accent-color': card.accentColor,
                 '--card-index': index
@@ -73,7 +77,10 @@ const Experience = ({ language }) => {
         })}
       </div>
       {currentExpertiseData.otherTechnologiesSkills && currentExpertiseData.otherTechnologiesSkills.length > 0 && (
-        <div className="other_technologies_section container show" style={{'--card-index': currentExpertiseData.cards.length }}>
+        <div
+          className="other_technologies_section container"
+          style={{'--card-index': currentExpertiseData.cards.length }}
+        >
           <h3 className="other_technologies_title">
             {language === 'en' ? "Tools & Methodologies" : "Herramientas y Metodologías"}
           </h3>
@@ -86,11 +93,6 @@ const Experience = ({ language }) => {
             ))}
           </ul>
         </div>
-      )}
-      {currentExpertiseData.backToTop && (
-        <a href="#home" className="back_to_top_button" aria-label={currentExpertiseData.backToTop}>
-          <IoIosArrowUp />
-        </a>
       )}
     </section>
   );

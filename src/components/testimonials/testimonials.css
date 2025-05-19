@@ -1,76 +1,156 @@
-.container.testimonials__container {
-  width: 40%;
-  padding-bottom: 4rem;
+.testimonials-title-dot {
+  color: var(--color-primary);
 }
-
+.testimonials__container_wrapper {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.testimonials__swiper-container {
+  width: 100%;
+  padding-bottom: 3.5rem;
+  padding-left: 45px;
+  padding-right: 45px;
+  box-sizing: border-box;
+  position: relative;
+}
 .client__avatar {
-  width: 4rem;
+  width: 4.5rem;
+  height: 4.5rem;
   aspect-ratio: 1/1;
   overflow: hidden;
   border-radius: 50%;
-  margin: 0 auto 1rem;
+  margin: 0 auto 1.2rem;
+  border: 3px solid var(--color-primary-variant);
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
+  background-color: var(--color-bg-variant);
 }
-
 .client__avatar a {
-  font-size: 40px;
-  aspect-ratio: 1/1;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
 }
-
+.client__avatar a svg {
+  fill: var(--color-primary);
+  transition: fill 0.3s ease;
+}
+.client__avatar a:hover svg {
+  fill: var(--color-white);
+}
 .testimonial {
   background: var(--color-bg-variant);
   text-align: center;
-  padding: 2rem;
-  border-radius: 2rem;
+  padding: 2.5rem 2rem;
+  border-radius: 1.5rem;
   user-select: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border: 1px solid var(--color-card-border-expertise);
 }
-
-.client__review {
-  color: var(--color-light);
-  font-weight: 300;
-  display: block;
-  width: 90%;
-  margin: 0.8rem auto 0;
+.client__review::before,
+.client__review::after {
+  content: '"';
+  color: var(--color-primary);
+  font-size: 1.5em;
+  line-height: 0;
+  position: relative;
+  top: 0.3em;
 }
-
-.swiper-pagination-clickable .swiper-pagination-bullet {
+.client__review::before {
+  margin-right: 0.1em;
+}
+.client__review::after {
+  margin-left: 0.1em;
+}
+.swiper-custom-pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+}
+.swiper-custom-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: var(--color-light);
+  opacity: 0.5;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+.swiper-custom-pagination .swiper-pagination-bullet-active {
   background: var(--color-primary);
+  opacity: 1;
+  transform: scale(1.2);
 }
-
-.client__name {
-  margin-bottom: 0.3rem;
+.swiper-navigation-buttons {}
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(var(--color-bg-variant-original-rgb, 44, 44, 108), 0.5);
+  color: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-
-.client__role {
-  color: var(--color-light);
-  font-weight: 300;
-  display: block;
-  margin-bottom: 0.8rem;
-  font-size: 0.9rem;
+.swiper-button-prev-custom:hover,
+.swiper-button-next-custom:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-50%) scale(1.1);
 }
-
-.client__review {
-  color: var(--color-light);
-  font-weight: 300;
-  display: block;
-  width: 90%;
-  margin: 0.8rem auto 0;
+.swiper-button-prev-custom {
+  left: 5px;
 }
-
-@media screen and (max-width: 1024px) {
-  .container.testimonials__container {
-    width: 60%;
-  }
+.swiper-button-next-custom {
+  right: 5px;
 }
-
+.swiper-button-prev-custom svg,
+.swiper-button-next-custom svg {
+  font-size: 1.5rem;
+}
 @media screen and (max-width: 600px) {
-  .container.testimonials__container {
-    width: var(--container-width-sm);
+  .testimonials__swiper-container {
+    padding-left: 40px;
+    padding-right: 40px;
   }
-
-  .client__review {
-    width: var(--container-width-sm);
+  .swiper-button-prev-custom,
+  .swiper-button-next-custom {
+    width: 35px;
+    height: 35px;
   }
+  .swiper-button-prev-custom {
+    left: 2px;
+  }
+  .swiper-button-next-custom {
+    right: 2px;
+  }
+}
+@media screen and (max-width: 480px) {
+    .swiper-button-prev-custom,
+    .swiper-button-next-custom {
+        width: 30px;
+        height: 30px;
+    }
+    .testimonials__swiper-container {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 }

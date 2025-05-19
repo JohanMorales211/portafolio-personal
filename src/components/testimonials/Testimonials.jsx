@@ -1,18 +1,15 @@
 import React from "react";
 import { BsLinkedin } from "react-icons/bs";
-import { Pagination } from "swiper";
-
+import { Pagination, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+import "swiper/css/navigation";
 import "./testimonials.css";
-
 const Testimonials = ({ language }) => {
   const testimonials = [
-    {
+        {
       id: 5,
       link: "https://www.linkedin.com/in/ricardo-andres-parra-caballero-9835a1274/",
       name: "Ricardo Andres Parra",
@@ -91,44 +88,65 @@ const Testimonials = ({ language }) => {
       },
     },
   ];
-
   const content = {
     en: {
-      feedback: "Feedback from my peers",
-      testimonials: "Testimonials",
+      sectionSubtitle: "What My Peers Say",
+      sectionTitle: "Testimonials",
     },
     es: {
-      feedback: "Comentarios de mis compañeros",
-      testimonials: "Testimonios",
+      sectionSubtitle: "Lo Que Dicen Mis Compañeros",
+      sectionTitle: "Testimonios",
     },
   };
-
   return (
-    <section id="testmonials">
-      <h5>{content[language].feedback}</h5>
-      <h2>{content[language].testimonials}</h2>
-      <Swiper
-        className="container testimonials__container"
-        modules={[Pagination]}
-        spaceBetween={40}
-        slidesPerView={1}
-        pagination={{ clickable: true }}
-      >
-        {testimonials.map((test) => (
-          <SwiperSlide className="testimonial" key={test.id}>
-            <div className="client__avatar">
-              <a href={test.link}>
-                <BsLinkedin />
-              </a>
-            </div>
-            <h5 className="client__name">{test.name}</h5>
-            <small className="client__role">{test.role[language]}</small>
-            <small className="client__review">{test.test[language]}</small>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <section id="testimonials" className="testimonials-section">
+      <div className="container section-header testimonials-header-override">
+        <h5 className="section-subtitle">
+          {content[language].sectionSubtitle}
+        </h5>
+        <h2 className="section-title">
+          {content[language].sectionTitle}
+          <span className="title-dot testimonials-title-dot">.</span>
+        </h2>
+      </div>
+      <div className="container testimonials__container_wrapper">
+        <Swiper
+          className="testimonials__swiper-container"
+          modules={[Pagination, Navigation]}
+          spaceBetween={40}
+          slidesPerView={1}
+          pagination={{ clickable: true, el: '.swiper-custom-pagination' }}
+          navigation={{
+            nextEl: ".swiper-button-next-custom",
+            prevEl: ".swiper-button-prev-custom",
+          }}
+          grabCursor={true}
+          loop={true}
+        >
+          {testimonials.map((test) => (
+            <SwiperSlide className="testimonial" key={test.id}>
+              <div className="client__avatar">
+                <a href={test.link} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn de ${test.name}`}>
+                  <BsLinkedin />
+                </a>
+              </div>
+              <h5 className="client__name">{test.name}</h5>
+              <small className="client__role">{test.role[language]}</small>
+              <blockquote className="client__review">{test.test[language]}</blockquote>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className="swiper-navigation-buttons">
+          <div className="swiper-button-prev-custom">
+            <FiChevronLeft />
+          </div>
+          <div className="swiper-button-next-custom">
+            <FiChevronRight />
+          </div>
+        </div>
+        <div className="swiper-custom-pagination"></div>
+      </div>
     </section>
   );
 };
-
 export default Testimonials;

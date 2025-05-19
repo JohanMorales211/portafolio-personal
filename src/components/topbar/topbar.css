@@ -26,11 +26,11 @@ nav.app_topbar a {
   transition: var(--transition);
 }
 nav.app_topbar a:hover {
-  background: rgba(var(--color-accent-hero-primary-rgb, 0, 198, 255), 0.2);
-  color: var(--color-accent-hero-primary);
+  background: rgba(var(--color-accent-pink-rgb, 255, 0, 122), 0.2);
+  color: var(--color-accent-pink);
 }
 nav.app_topbar a.active {
-  background: var(--color-accent-hero-primary);
+  background: var(--color-accent-pink);
   color: var(--color-bg-hero);
 }
 @media screen and (max-width: 768px) {

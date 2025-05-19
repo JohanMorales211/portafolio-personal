@@ -51,7 +51,7 @@
 .modal_project_title {
   font-family: var(--font-family-primary);
   font-size: clamp(1.5rem, 3vw, 2rem);
-  color: var(--color-accent-pink);
+  color: var(--color-white);
   margin-bottom: 1rem;
   text-align: center;
 }
@@ -87,4 +87,8 @@
   justify-content: center;
   gap: 1rem;
   margin-top: 1rem;
+}
+.modal_project_cta .btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
 }
