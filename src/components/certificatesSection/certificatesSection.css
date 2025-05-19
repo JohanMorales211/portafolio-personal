@@ -1,0 +1,192 @@
+.certificates_section {
+  background-color: var(--color-bg-expertise);
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  position: relative;
+}
+
+.certificates_section_header {
+  text-align: left;
+  margin-bottom: 3.5rem;
+}
+
+.certificates_section_subtitle {
+  font-family: var(--font-family-secondary);
+  color: var(--color-text-expertise-subtitle);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.certificates_section_title {
+  font-family: var(--font-family-primary);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--color-text-expertise-title);
+  margin: 0;
+}
+
+.certificates_section_title .section_title_dot {
+  color: var(--color-accent-blue);
+}
+
+.certificates__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.certificate-card {
+  background-color: var(--color-card-bg-expertise);
+  border: 1px solid var(--color-card-border-expertise);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.certificate-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease-out calc(var(--card-index, 0) * 0.12s),
+              transform 0.6s ease-out calc(var(--card-index, 0) * 0.12s);
+}
+
+.certificate-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(var(--color-accent-blue-rgb, 0, 198, 255), 0.15);
+}
+
+.certificate_card_image_link_wrapper {
+  display: block;
+  text-decoration: none;
+}
+
+.certificate_card_image_wrapper_inner {
+  width: 100%;
+  height: 180px;
+  background-color: var(--color-bg-hero);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  transition: background-color 0.3s ease;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.certificate_card_image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.certificate_issuer_logo {
+  object-fit: contain !important;
+  max-width: 80%;
+  max-height: 70%;
+}
+
+.certificate-card:hover .certificate_card_image {
+    transform: scale(1.05);
+}
+
+
+.certificate_card_placeholder_image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.certificate_card_placeholder_image svg {
+  font-size: 4rem;
+  color: var(--color-text-expertise-subtitle);
+  opacity: 0.3;
+}
+
+.certificate_card_content {
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.certificate_card_title {
+  font-family: var(--font-family-primary);
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  color: var(--color-white);
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+
+.certificate_card_issuer,
+.certificate_card_date {
+  font-family: var(--font-family-secondary);
+  font-size: 0.8rem;
+  color: var(--color-text-expertise-subtitle);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.certificate_card_issuer em {
+  font-style: normal;
+  font-weight: 500;
+}
+
+.certificate_card_description {
+  font-family: var(--font-family-secondary);
+  font-size: 0.9rem;
+  color: var(--color-text-expertise-desc);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.certificate_card_button {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  padding: 0.75rem 1.5rem;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .certificates__container {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  .certificate_card_image_wrapper_inner {
+    height: 160px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .certificates_section_header {
+    text-align: center;
+  }
+  .certificates__container {
+    grid-template-columns: 1fr;
+  }
+  .certificate_card_image_wrapper_inner {
+    height: 140px;
+  }
+  .certificate_card_title {
+    font-size: 1.15rem;
+  }
+  .certificate_card_content {
+    padding: 1.5rem;
+  }
+}

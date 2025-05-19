@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import "./workSection.css";
 import CV_File from "../../assets/my_resume.pdf";
-import { FiDownload, FiFileText } from "react-icons/fi";
+import MyPhoto from "../../assets/foto_mia.png";
+import { FiDownload } from "react-icons/fi";
+
 const GradientButton = ({ href, download, children, className }) => {
   return (
     <a href={href} download={download} className={`gradient_button_cv ${className || ''}`}>
@@ -9,6 +11,7 @@ const GradientButton = ({ href, download, children, className }) => {
     </a>
   );
 };
+
 const WorkSection = ({ language }) => {
   const content = {
     en: {
@@ -18,6 +21,7 @@ const WorkSection = ({ language }) => {
       featuredProjectTitle: "My Resume",
       projectDescription: "Take a look at my professional background and detailed experience.",
       viewProjectButton: "View / Download CV",
+      myPhotoAlt: "Photo of Johan Morales"
     },
     es: {
       sectionTitle: "Mi Trabajo",
@@ -26,8 +30,10 @@ const WorkSection = ({ language }) => {
       featuredProjectTitle: "Mi Currículum",
       projectDescription: "Echa un vistazo a mi trayectoria profesional y experiencia detallada.",
       viewProjectButton: "Ver / Descargar CV",
+      myPhotoAlt: "Foto de Johan Morales"
     },
   };
+
   useEffect(() => {
     const section = document.querySelector(".work_section_container");
     const observer = new IntersectionObserver(
@@ -41,13 +47,16 @@ const WorkSection = ({ language }) => {
       },
       { threshold: 0.1 }
     );
+
     if (section) {
       observer.observe(section);
     }
+
     return () => {
       if (section) observer.unobserve(section);
     };
   }, []);
+
   return (
     <section id="work" className="work_section">
       <div className="container work_section_container">
@@ -62,7 +71,7 @@ const WorkSection = ({ language }) => {
         </div>
         <div className="work_section_featured_cv">
           <div className="cv_preview_area">
-            <FiFileText className="cv_icon_placeholder" />
+            <img src={MyPhoto} alt={content[language].myPhotoAlt} className="my_photo_image" />
           </div>
           <div className="featured_cv_details">
             <p className="featured_cv_label">{language === 'es' ? "Documento Destacado" : "Featured Document"}</p>
@@ -82,4 +91,5 @@ const WorkSection = ({ language }) => {
     </section>
   );
 };
+
 export default WorkSection;

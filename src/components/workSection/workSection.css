@@ -3,6 +3,7 @@
   position: relative;
   overflow: hidden;
 }
+
 .work_section_container {
   display: grid;
   grid-template-columns: 1fr;
@@ -14,20 +15,25 @@
   transform: translateY(40px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
+
 .work_section_container.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
 .work_section_text_content {
   max-width: 600px;
 }
+
 .work_section_title {
   margin-bottom: 1.5rem;
   text-align: left;
 }
+
 .section_title_dot {
   color: var(--color-accent-pink);
 }
+
 .work_section_description {
   font-family: var(--font-family-secondary);
   font-size: clamp(0.9rem, 2vw, 1.1rem);
@@ -35,29 +41,43 @@
   line-height: 1.8;
   margin-bottom: 2rem;
 }
+
 .work_section_featured_cv {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
   text-align: center;
 }
+
 .cv_preview_area {
-  width: 200px;
-  height: 280px;
-  background-color: rgba(var(--color-card-bg-expertise-rgb, 24, 27, 37), 0.7);
-  border: 1px dashed var(--color-card-border-expertise);
-  border-radius: 8px;
+  width: 220px;
+  height: 220px;
+  background-color: var(--color-card-bg-expertise);
+  border: 3px solid var(--color-accent-pink);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(var(--color-accent-pink-rgb, 255, 0, 122), 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.cv_icon_placeholder {
-  font-size: 5rem;
-  color: var(--color-accent-pink);
-  opacity: 0.7;
+
+.cv_preview_area:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 35px rgba(var(--color-accent-pink-rgb, 255, 0, 122), 0.3);
 }
+
+.my_photo_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
 .gradient_button_cv {
   display: inline-flex;
   align-items: center;
@@ -65,25 +85,27 @@
   padding: 0.8rem 1.8rem;
   font-family: var(--font-family-secondary);
   font-weight: 600;
-  color: var(--color-white);
-  border-radius: 25px;
-  background: linear-gradient(90deg, var(--color-accent-pink), var(--color-accent-blue));
-  background-size: 200% 100%;
-  transition: var(--transition), background-position 0.5s ease;
+  color: var(--color-accent-pink); /* Texto rosado por defecto */
+  background-color: transparent; /* Fondo transparente por defecto */
+  border: 2px solid var(--color-accent-pink); /* Borde rosado */
+  border-radius: 6px;
   text-decoration: none;
-  border: none;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .gradient_button_cv:hover {
-  background-position: right center;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  background-color: var(--color-accent-pink); /* Fondo rosado en hover */
+  color: var(--color-white); /* Texto blanco en hover */
   transform: translateY(-2px);
-  color: var(--color-white);
+  box-shadow: 0 4px 12px rgba(var(--color-accent-pink-rgb, 255, 0, 122), 0.25);
 }
+
 .featured_cv_details {
   max-width: 450px;
 }
+
 .featured_cv_label {
   font-size: 0.8rem;
   color: var(--color-accent-pink);
@@ -92,16 +114,19 @@
   margin-bottom: 0.3rem;
   font-weight: 600;
 }
+
 .featured_cv_title {
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   margin-bottom: 0.5rem;
 }
+
 .featured_cv_description {
   font-size: 0.95rem;
   color: var(--color-text-expertise-desc);
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
+
 .work_section_decorative_dots {
   position: absolute;
   top: 10%;
@@ -128,26 +153,35 @@
   0% { transform: translateY(0px); }
   100% { transform: translateY(-15px); }
 }
+
 @media screen and (min-width: 768px) {
   .work_section_container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
     text-align: left;
   }
+
   .work_section_text_content {
     max-width: none;
   }
+
   .work_section_featured_cv {
-    align-items: flex-start;
-    text-align: left;
+    align-items: center;
+    text-align: center;
   }
+
   .cv_preview_area {
-    width: 250px;
-    height: 350px;
+    width: 280px;
+    height: 280px;
+    margin-bottom: 1rem;
   }
+
   .featured_cv_details {
     max-width: none;
   }
 }
+
 @media screen and (max-width: 600px) {
   .work_section_title {
     font-size: clamp(2rem, 7vw, 3rem);
@@ -155,13 +189,12 @@
   .work_section_description {
     font-size: 0.9rem;
   }
+
   .cv_preview_area {
     width: 180px;
-    height: 250px;
+    height: 180px;
   }
-  .cv_icon_placeholder {
-    font-size: 4rem;
-  }
+
   .featured_cv_title {
     font-size: clamp(1.3rem, 5vw, 1.8rem);
   }
