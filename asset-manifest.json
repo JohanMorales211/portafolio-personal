@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/portafolio-personal/static/css/main.481506b9.css",
+    "main.js": "/portafolio-personal/static/js/main.dd93fa3b.js",
+    "static/media/foto_mia.png": "/portafolio-personal/static/media/foto_mia.61feecdb76ae1c40c42b.png",
+    "static/media/tweets_x.png": "/portafolio-personal/static/media/tweets_x.1050f4206cd48fefd28c.png",
+    "static/media/file_explorer.jpg": "/portafolio-personal/static/media/file_explorer.a93bcf63aae7ccffd8e1.jpg",
+    "static/media/aws_partner.pdf": "/portafolio-personal/static/media/aws_partner.ec359315538cc21a65b9.pdf",
+    "static/media/aws_cloud_essentials.pdf": "/portafolio-personal/static/media/aws_cloud_essentials.8fd4e2bc06730678d807.pdf",
+    "static/media/aws_observability.pdf": "/portafolio-personal/static/media/aws_observability.c569231ce3b037f56c28.pdf",
+    "static/media/spotify_time_free.png": "/portafolio-personal/static/media/spotify_time_free.07c5745ac61d132b16d8.png",
+    "static/media/imagen_nu.jpg": "/portafolio-personal/static/media/imagen_nu.a1145e21d87ab1d2ca53.jpg",
+    "static/media/my_resume.pdf": "/portafolio-personal/static/media/my_resume.e21a8f4d0d0af07412be.pdf",
+    "static/media/hackerank_logo.png": "/portafolio-personal/static/media/hackerank_logo.eab675a51239a438321a.png",
+    "static/media/scrum_fundamentals.jpg": "/portafolio-personal/static/media/scrum_fundamentals.fc110aa77669580915d6.jpg",
+    "index.html": "/portafolio-personal/index.html",
+    "main.481506b9.css.map": "/portafolio-personal/static/css/main.481506b9.css.map",
+    "main.dd93fa3b.js.map": "/portafolio-personal/static/js/main.dd93fa3b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.481506b9.css",
+    "static/js/main.dd93fa3b.js"
+  ]
+}
