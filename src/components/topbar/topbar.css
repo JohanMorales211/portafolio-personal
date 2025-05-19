@@ -1,33 +1,58 @@
-nav {
-  background: rgba(0, 0, 0, 0.3);
+nav.app_topbar {
+  background: rgba(0, 0, 0, 0.15);
   width: max-content;
   display: block;
-  padding: 0.7rem 1.7rem;
-  z-index: 2;
+  padding: 0.6rem 1.5rem;
+  z-index: 100;
   position: fixed;
+  top: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 2rem;
   display: flex;
   gap: 0.8rem;
-  border-radius: 3rem;
-  backdrop-filter: blur(15px);
+  border-radius: 2rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
 }
-
-nav a {
+nav.app_topbar a {
   background: transparent;
-  padding: 0.9rem;
+  padding: 0.7rem;
   border-radius: 50%;
   display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--color-light);
   font-size: 1.1rem;
+  transition: var(--transition);
 }
-
-nav a:hover {
-  background: rgba(0, 0, 0, 0.3);
+nav.app_topbar a:hover {
+  background: rgba(var(--color-accent-hero-primary-rgb, 0, 198, 255), 0.2);
+  color: var(--color-accent-hero-primary);
 }
-
-nav a.active {
-  background: var(--color-bg);
-  color: var(--color-white);
+nav.app_topbar a.active {
+  background: var(--color-accent-hero-primary);
+  color: var(--color-bg-hero);
+}
+@media screen and (max-width: 768px) {
+  nav.app_topbar {
+    padding: 0.5rem 1rem;
+    gap: 0.6rem;
+    top: 1rem;
+  }
+  nav.app_topbar a {
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  nav.app_topbar {
+    width: auto;
+    max-width: 90%;
+    padding: 0.4rem 0.8rem;
+    gap: 0.5rem;
+  }
+  nav.app_topbar a {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
 }

@@ -2,19 +2,16 @@ import React from "react";
 import { BsLinkedin } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 import "./footer.css";
-
 const Footer = ({ language }) => {
   let getYear = () => {
     let currentYear = new Date().getFullYear();
     return currentYear;
   };
-
   const content = {
     en: {
       thatsAll: "That's it!",
       home: "Home",
-      about: "About",
-      skills: "Skills",
+      skills: "Specialization",
       portfolio: "Portfolio",
       testimonials: "Testimonials",
       contact: "Contact",
@@ -23,15 +20,13 @@ const Footer = ({ language }) => {
     es: {
       thatsAll: "¡Eso es todo!",
       home: "Inicio",
-      about: "Sobre mí",
-      skills: "Habilidades",
+      skills: "Especialización",
       portfolio: "Portafolio",
       testimonials: "Testimonios",
       contact: "Contacto",
       copyright: "Todos los derechos reservados.",
     },
   };
-
   return (
     <footer>
       <a href="#home" className="footer__logo">
@@ -40,9 +35,6 @@ const Footer = ({ language }) => {
       <ul className="permalinks">
         <li>
           <a href="#home">{content[language].home}</a>
-        </li>
-        <li>
-          <a href="#about">{content[language].about}</a>
         </li>
         <li>
           <a href="#experience">{content[language].skills}</a>
@@ -62,6 +54,7 @@ const Footer = ({ language }) => {
           href="https://www.linkedin.com/in/johan-morales-b3809b206/"
           target="_blank"
           rel="noreferrer"
+          aria-label="LinkedIn"
         >
           <BsLinkedin />
         </a>
@@ -69,17 +62,17 @@ const Footer = ({ language }) => {
           href="https://github.com/JohanMorales211"
           target="_blank"
           rel="noreferrer"
+          aria-label="GitHub"
         >
           <FaGithub />
         </a>
       </div>
       <div className="footer__copyright">
         <small>
-          © ET {getYear()}. {content[language].copyright}
+          © Johan Morales {getYear()}. {content[language].copyright}
         </small>
       </div>
     </footer>
   );
 };
-
 export default Footer;

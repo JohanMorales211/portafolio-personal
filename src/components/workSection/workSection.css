@@ -1,0 +1,172 @@
+.work_section {
+  background-color: var(--color-bg-expertise);
+  position: relative;
+  overflow: hidden;
+}
+.work_section_container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.work_section_container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.work_section_text_content {
+  max-width: 600px;
+}
+.work_section_title {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+.section_title_dot {
+  color: var(--color-accent-pink);
+}
+.work_section_description {
+  font-family: var(--font-family-secondary);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--color-text-expertise-desc);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+.work_section_featured_cv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+.cv_preview_area {
+  width: 200px;
+  height: 280px;
+  background-color: rgba(var(--color-card-bg-expertise-rgb, 24, 27, 37), 0.7);
+  border: 1px dashed var(--color-card-border-expertise);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.cv_icon_placeholder {
+  font-size: 5rem;
+  color: var(--color-accent-pink);
+  opacity: 0.7;
+}
+.gradient_button_cv {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.8rem;
+  font-family: var(--font-family-secondary);
+  font-weight: 600;
+  color: var(--color-white);
+  border-radius: 25px;
+  background: linear-gradient(90deg, var(--color-accent-pink), var(--color-accent-blue));
+  background-size: 200% 100%;
+  transition: var(--transition), background-position 0.5s ease;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.gradient_button_cv:hover {
+  background-position: right center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+  color: var(--color-white);
+}
+.featured_cv_details {
+  max-width: 450px;
+}
+.featured_cv_label {
+  font-size: 0.8rem;
+  color: var(--color-accent-pink);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+.featured_cv_title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  margin-bottom: 0.5rem;
+}
+.featured_cv_description {
+  font-size: 0.95rem;
+  color: var(--color-text-expertise-desc);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+.work_section_decorative_dots {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 100px;
+  height: 100px;
+  z-index: 0;
+}
+.work_section_decorative_dots .dot {
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--color-accent-hero-primary);
+  opacity: 0.1;
+}
+.work_section_decorative_dots .dot1 {
+  width: 80px; height: 80px; top: 0; left: 20px;
+  animation: subtleBob 8s ease-in-out infinite alternate;
+}
+.work_section_decorative_dots .dot2 {
+  width: 120px; height: 120px; top: 50px; left: -30px; opacity: 0.05;
+  animation: subtleBob 10s ease-in-out infinite alternate-reverse;
+}
+@keyframes subtleBob {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-15px); }
+}
+@media screen and (min-width: 768px) {
+  .work_section_container {
+    grid-template-columns: 1fr 1fr;
+    text-align: left;
+  }
+  .work_section_text_content {
+    max-width: none;
+  }
+  .work_section_featured_cv {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .cv_preview_area {
+    width: 250px;
+    height: 350px;
+  }
+  .featured_cv_details {
+    max-width: none;
+  }
+}
+@media screen and (max-width: 600px) {
+  .work_section_title {
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+  .work_section_description {
+    font-size: 0.9rem;
+  }
+  .cv_preview_area {
+    width: 180px;
+    height: 250px;
+  }
+  .cv_icon_placeholder {
+    font-size: 4rem;
+  }
+  .featured_cv_title {
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+  }
+  .gradient_button_cv {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}

@@ -1,9 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import HeaderSocials from "./HeaderSocials";
 import "./header.css";
-import { useSprings, animated } from "@react-spring/web";
-import { easings } from "@react-spring/web";
-
+import { useSprings, animated, easings } from "@react-spring/web";
 const SplitText = ({
   text = "",
   className = "",
@@ -17,29 +14,33 @@ const SplitText = ({
   onLetterAnimationComplete,
 }) => {
   const words = text.split(" ").map((word) => word.split(""));
-
   const letters = words.flat();
   const [inView, setInView] = useState(false);
-  const ref = useRef();
+  const ref = useRef(null);
   const animatedCount = useRef(0);
-
   useEffect(() => {
+    animatedCount.current = 0;
+    const currentRef = ref.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          observer.unobserve(ref.current);
+          if (currentRef) {
+            observer.unobserve(currentRef);
+          }
         }
       },
       { threshold, rootMargin }
     );
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
-
-    return () => observer.disconnect();
-  }, [threshold, rootMargin]);
-
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [text, threshold, rootMargin]);
   const springs = useSprings(
     letters.length,
     letters.map((_, i) => ({
@@ -57,10 +58,10 @@ const SplitText = ({
           }
         : animationFrom,
       delay: i * delay,
-      config: { easing },
+      config: { easing, tension: 280, friction: 60 },
     }))
   );
-
+  let letterIndex = 0;
   return (
     <p
       ref={ref}
@@ -73,21 +74,18 @@ const SplitText = ({
         wordWrap: "break-word",
       }}
     >
-      {words.map((word, wordIndex) => (
+      {words.map((word, wordIdx) => (
         <span
-          key={wordIndex}
-          style={{ display: "inline-block", whiteSpace: "nowrap" }}
+          key={wordIdx}
+          style={{ display: "inline-block", whiteSpace: "nowrap", marginRight: '0.3em' }}
         >
-          {word.map((letter, letterIndex) => {
-            const index =
-              words.slice(0, wordIndex).reduce((acc, w) => acc + w.length, 0) +
-              letterIndex;
-
+          {word.map((letter, charIdx) => {
+            const currentSpring = springs[letterIndex++];
             return (
               <animated.span
-                key={index}
+                key={`${wordIdx}-${charIdx}`}
                 style={{
-                  ...springs[index],
+                  ...currentSpring,
                   display: "inline-block",
                   willChange: "transform, opacity",
                 }}
@@ -96,78 +94,78 @@ const SplitText = ({
               </animated.span>
             );
           })}
-          {wordIndex < words.length - 1 && (
-            <span style={{ display: "inline-block", width: "0.3em" }}> </span>
-          )}
         </span>
       ))}
     </p>
   );
 };
-
 const Header = ({ language, onLanguageChange }) => {
   const content = {
     en: {
-      greeting: "Hello I'm",
+      logoName: "JohanM",
       name: "Johan Morales",
-      title: "Full Stack Developer",
+      title: "SOFTWARE ENGINEER, FULL STACK DEVELOPER.",
+      asFeaturedIn: "AS FEATURED IN",
       scrollDown: "Scroll Down",
     },
     es: {
-      greeting: "Hola, soy",
+      logoName: "JohanM",
       name: "Johan Morales",
-      title: "Desarrollador Full Stack",
-      scrollDown: "Desplazarse hacia abajo",
+      title: "INGENIERO DE SOFTWARE, DESARROLLADOR FULL STACK.",
+      asFeaturedIn: "PRESENTADO EN",
+      scrollDown: "Desplázate hacia abajo",
     },
   };
-
+  const [nameAnimationComplete, setNameAnimationComplete] = useState(false);
+  const handleNameAnimationComplete = () => {
+    setNameAnimationComplete(true);
+  };
   useEffect(() => {
     if (!language) {
       onLanguageChange("en");
     }
   }, [language, onLanguageChange]);
-
-  const [animationComplete, setAnimationComplete] = useState(false);
-
-  const handleAnimationComplete = () => {
-    setAnimationComplete(true);
-  };
-
   return (
     <header id="home">
-      <div className="container header__container">
+      <div className="header__app_logo">
+        {content[language].logoName}<span className="header__app_logo_accent">.</span><span className="header__app_logo_cursor">_</span>
+      </div>
+      <div className="header__top_actions">
         <div className="language-buttons">
           <button
             onClick={() => onLanguageChange("en")}
-            className={`btn ${language === "en" ? "active" : ""}`}
+            className={`btn ${language === "en" ? "active" : ""} btn-english`}
           >
             English
           </button>
           <button
             onClick={() => onLanguageChange("es")}
-            className={`btn ${language === "es" ? "active" : ""}`}
+            className={`btn ${language === "es" ? "active" : ""} btn-spanish`}
           >
             Español
           </button>
         </div>
-        <h5>{content[language].greeting}</h5>
-        <h1>
-          <SplitText
-            text={content[language].name}
-            delay={50}
-            onLetterAnimationComplete={handleAnimationComplete}
-          />
-        </h1>
-        <h5 className={`text-light ${animationComplete ? "show" : "hide"}`}>
-          {content[language].title}
-        </h5>
-        <a href="#contact" className="scroll__down">
-          {content[language].scrollDown}
-        </a>
-        <HeaderSocials language={language} />
       </div>
+      <div className="container header__container">
+        <div className="header__main_name">
+          <h1>
+            <SplitText
+              text={content[language].name}
+              delay={70}
+              onLetterAnimationComplete={handleNameAnimationComplete}
+              animationFrom={{ opacity: 0, transform: "translate3d(0,60px,0)" }}
+              animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+            />
+          </h1>
+        </div>
+        <p className={`header__subtitle ${nameAnimationComplete ? "show" : "hide"}`}>
+          {content[language].title}
+        </p>
+        <a href="#about" className="scroll__down_indicator" aria-label={content[language].scrollDown}>
+        </a>
+      </div>
+      <div className="header__abstract_bg"></div>
     </header>
   );
 };
-
 export default Header;

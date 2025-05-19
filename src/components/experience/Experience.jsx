@@ -1,280 +1,98 @@
-import React, { useState, useEffect } from "react";
-import { VscFolderLibrary } from "react-icons/vsc";
+import React, { useEffect } from "react";
+import { expertiseData } from "./skillsData";
 import "./experience.css";
-import { skillsData } from "./skillsData";
-import SkillDetail from "./SkillDetail";
-
+import { FiServer, FiCpu, FiDatabase } from "react-icons/fi";
+import { FaReact } from "react-icons/fa";
+import { IoIosArrowUp } from "react-icons/io";
+import { BsTools, BsClipboardData } from "react-icons/bs";
+const expertiseIconComponents = {
+  FiServer: FiServer,
+  FiCpu: FiCpu,
+  FiDatabase: FiDatabase,
+  FaReact: FaReact,
+  BsTools: BsTools,
+  BsClipboardData: BsClipboardData,
+};
 const Experience = ({ language }) => {
+  const currentExpertiseData = expertiseData[language];
   useEffect(() => {
-    const cards = document.querySelectorAll(".experience__container > div");
-
-    const observer = new IntersectionObserver((entries) => {
+    const elementsToObserve = document.querySelectorAll(".expertise__card, .other_technologies_section");
+    const observerCallback = (entries, observerInstance) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("show");
-        } else {
-          entry.target.classList.remove("show");
+          observerInstance.unobserve(entry.target);
         }
       });
-    });
-
-    cards.forEach((card) => observer.observe(card));
-
-    return () => observer.disconnect();
-  }, []);
-
-  const [showCertificates, setShowCertificates] = useState(false);
-  const [showFrontendExperience, setShowFrontendExperience] = useState(false);
-  const [showBackEndExperience, setShowBackEndExperience] = useState(false);
-  const [showFrameworksExperience, setShowFrameworksExperience] =
-    useState(false);
-  const [showOthersExperience, setShowOthersExperience] = useState(false);
-
-  const toggleCertificates = () => {
-    setShowCertificates(!showCertificates);
-  };
-
-  const toggleFrontedExperience = () => {
-    setShowFrontendExperience(!showFrontendExperience);
-  };
-
-  const toggleBackEndExperience = () => {
-    setShowBackEndExperience(!showBackEndExperience);
-  };
-
-  const toggleFrameworksExperience = () => {
-    setShowFrameworksExperience(!showFrameworksExperience);
-  };
-
-  const toggleOthersExperience = () => {
-    setShowOthersExperience(!showOthersExperience);
-  };
-
+    };
+    const observer = new IntersectionObserver(observerCallback, { threshold: 0.05 });
+    elementsToObserve.forEach((el) => observer.observe(el));
+    return () => {
+      elementsToObserve.forEach((el) => { if (el) observer.unobserve(el); });
+    };
+  }, [currentExpertiseData, language]);
   return (
     <section id="experience">
-      <h5>{skillsData[language].skillsIHave}</h5>
-      <h2>{skillsData[language].skills}</h2>
-      <div className="container experience__container">
-        {/* Front-end Development */}
-        <div className="experience__frontend experience__card">
-          <h3 className="experience__card-title">
-            {skillsData[language].frontEnd}
-          </h3>
-          <div className="experience__content grid grid-cols-3 gap-4 p-6">
-            {skillsData[language].frontEndSkills.map((skill) => (
-              <SkillDetail
-                key={skill.name}
-                skill={skill}
-                language={language}
-                showFrontendExperience={showFrontendExperience}
-              />
-            ))}
-          </div>
-          <span
-            onClick={toggleFrontedExperience}
-            className="experience__toggle-text cursor-pointer text-blue-500"
-            aria-label="Toggle experience time"
-          >
-            {showFrontendExperience
-              ? "Ocultar experiencia"
-              : "Mostrar experiencia"}
-          </span>
-        </div>
-
-        {/* Back-end Development */}
-        <div className="experience__backend experience__card">
-          <h3 className="experience__card-title">
-            {skillsData[language].backEnd}
-          </h3>
-          <div className="experience__content grid grid-cols-3 gap-4 p-6">
-            {skillsData[language].backEndSkills.map((skill) => (
-              <SkillDetail
-                key={skill.name}
-                skill={skill}
-                language={language}
-                showBackEndExperience={showBackEndExperience}
-              />
-            ))}
-          </div>
-          <span
-            onClick={toggleBackEndExperience}
-            className="experience__toggle-text cursor-pointer text-blue-500"
-            aria-label="Toggle experience time"
-          >
-            {showBackEndExperience
-              ? "Ocultar experiencia"
-              : "Mostrar experiencia"}
-          </span>
-        </div>
-
-        {/* Frameworks */}
-        <div className="experience__frameworks experience__card">
-          <h3 className="experience__card-title">
-            {skillsData[language].frameworks}
-          </h3>
-          <div className="experience__content grid grid-cols-3 gap-4 p-6">
-            {skillsData[language].frameworksSkills.map((skill) => (
-              <SkillDetail
-                key={skill.name}
-                skill={skill}
-                language={language}
-                showFrameworksExperience={showFrameworksExperience}
-              />
-            ))}
-          </div>
-          <span
-            onClick={toggleFrameworksExperience}
-            className="experience__toggle-text cursor-pointer text-blue-500"
-            aria-label="Toggle experience time"
-          >
-            {showFrameworksExperience
-              ? "Ocultar experiencia"
-              : "Mostrar experiencia"}
-          </span>
-        </div>
-
-        {/* Others */}
-        <div className="experience__others experience__card">
-          <h3 className="experience__card-title">
-            {skillsData[language].others}
-          </h3>
-          <div className="experience__content grid grid-cols-3 gap-4 p-6">
-            {skillsData[language].otherSkills.map((skill) => (
-              <SkillDetail
-                key={skill.name}
-                skill={skill}
-                language={language}
-                showOthersExperience={showOthersExperience}
-              />
-            ))}
-          </div>
-          <span
-            onClick={toggleOthersExperience}
-            className="experience__toggle-text cursor-pointer text-blue-500" // Agrega estilos para que parezca un enlace
-            aria-label="Toggle experience time"
-          >
-            {showOthersExperience
-              ? "Ocultar experiencia"
-              : "Mostrar experiencia"}
-          </span>
-        </div>
+      <div className="expertise__title_container container">
+        <h2 className="expertise__section_title">
+          {currentExpertiseData.sectionTitle}
+          <span className="expertise__section_title_dot">.</span>
+        </h2>
       </div>
-
-      <div className="experience__certificates-button">
-        <button
-          onClick={toggleCertificates}
-          className="btn btn-secondary neon-button"
-        >
-          {showCertificates
-            ? skillsData[language].hideCertificates
-            : skillsData[language].showCertificates}
-        </button>
+      <div className="expertise__container">
+        {currentExpertiseData.cards.map((card, index) => {
+          const IconComponent = expertiseIconComponents[card.icon] || FiServer;
+          return (
+            <article
+              className="expertise__card"
+              key={card.id}
+              style={{
+                '--accent-color': card.accentColor,
+                '--card-index': index
+              }}
+            >
+              {IconComponent && <IconComponent className="expertise__card_icon" />}
+              <div className="expertise__card_title_wrapper">
+                <h3 className="expertise__card_title">{card.title}</h3>
+                {card.subtitle && (
+                  <p className="expertise__card_subtitle">{card.subtitle}</p>
+                )}
+              </div>
+              <div className="expertise__card_description">
+                <p className="expertise_general_desc">{card.description}</p>
+                {card.specificSkills && card.specificSkills.length > 0 && (
+                  <ul className="expertise_skills_list">
+                    {card.specificSkills.map((skill, skillIndex) => (
+                      <li key={skillIndex}>{skill}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </article>
+          );
+        })}
       </div>
-
-      {/* Ejemplo de certificado (Software Engineer) */}
-      {showCertificates && (
-        <div className="experience__certificates">
-          <article className="experience__card">
-            <VscFolderLibrary className="experience__icon" />
-            <h5>{skillsData[language].softwareEngineerCertificate}</h5>
-            <small>
-              <a
-                href="https://www.hackerrank.com/certificates/c1ce3120f28a"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {skillsData[language].viewCertificate}
-              </a>
-            </small>
-          </article>
-
-          <article className="experience__card">
-            <VscFolderLibrary className="experience__icon" />
-            <h5>{skillsData[language].frontendReactCertificate}</h5>
-            <small>
-              <a
-                href="https://www.hackerrank.com/certificates/59900afd316e"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {skillsData[language].viewCertificate}
-              </a>
-            </small>
-          </article>
-
-          <article className="experience__card">
-            <VscFolderLibrary className="experience__icon" />
-            <h5>{skillsData[language].angularCertificate}</h5>
-            <small>
-              <a
-                href="https://www.hackerrank.com/certificates/f1287cbae472"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {skillsData[language].viewCertificate}
-              </a>
-            </small>
-          </article>
-
-          <article className="experience__card">
-            <VscFolderLibrary className="experience__icon" />
-            <h5>{skillsData[language].sqlCertificate}</h5>
-            <small>
-              <a
-                href="https://www.hackerrank.com/certificates/07877ed75494"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {skillsData[language].viewCertificate}
-              </a>
-            </small>
-          </article>
-
-          <article className="experience__card">
-            <VscFolderLibrary className="experience__icon" />
-            <h5>{skillsData[language].restAPICertificate}</h5>
-            <small>
-              <a
-                href="https://www.hackerrank.com/certificates/6f9c7aa851a9"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {skillsData[language].viewCertificate}
-              </a>
-            </small>
-          </article>
-
-          <article className="experience__card">
-            <VscFolderLibrary className="experience__icon" />
-            <h5>{skillsData[language].javascriptCertificate}</h5>
-            <small>
-              <a
-                href="https://www.hackerrank.com/certificates/bcd1918a93d0"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {skillsData[language].viewCertificate}
-              </a>
-            </small>
-          </article>
-
-          <article className="experience__card">
-            <VscFolderLibrary className="experience__icon" />
-            <h5>{skillsData[language].scrumCertificate}</h5>
-            <small>
-              <a
-                href="https://www.scrumstudy.com/certification/verify?type=SFC&number=978278"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {skillsData[language].viewCertificate}
-              </a>
-            </small>
-          </article>
+      {currentExpertiseData.otherTechnologiesSkills && currentExpertiseData.otherTechnologiesSkills.length > 0 && (
+        <div className="other_technologies_section container show" style={{'--card-index': currentExpertiseData.cards.length }}>
+          <h3 className="other_technologies_title">
+            {language === 'en' ? "Tools & Methodologies" : "Herramientas y Metodologías"}
+          </h3>
+          {currentExpertiseData.otherTechnologiesIntro &&
+            <p className="other_technologies_intro">{currentExpertiseData.otherTechnologiesIntro}</p>
+          }
+          <ul className="expertise_skills_list other_tech_list">
+            {currentExpertiseData.otherTechnologiesSkills.map((skill, index) => (
+              <li key={index}>{skill}</li>
+            ))}
+          </ul>
         </div>
+      )}
+      {currentExpertiseData.backToTop && (
+        <a href="#home" className="back_to_top_button" aria-label={currentExpertiseData.backToTop}>
+          <IoIosArrowUp />
+        </a>
       )}
     </section>
   );
 };
-
 export default Experience;
