@@ -125,7 +125,7 @@ const experienceData = {
       company: 'Celuweb',
       companyLink: null,
       location: 'Armenia, Quindío',
-      dates: 'October 2022 - April 2023',
+      dates: 'October 2024 - April 2025',
       descriptionPoints: [
         'Participated in the maintenance and supervision of servers on AWS and Azure, using Docker and Kubernetes for container orchestration.',
         'Worked on a large-scale web scraping service to extract and process e-commerce data.',
@@ -140,7 +140,7 @@ const experienceData = {
       company: 'Tecnodiesel S.A.S',
       companyLink: null,
       location: 'Pereira, Risaralda',
-      dates: 'March 2022 - October 2022',
+      dates: 'March 2024 - October 2024',
       descriptionPoints: [
         'Developed predictive models with machine learning to optimize spare parts inventory management, preventive machinery maintenance, and energy demand.',
         'Integrated machinery telemetry data, ERP/CRM systems, and market sources for a comprehensive operational performance analysis.',
@@ -154,7 +154,7 @@ const experienceData = {
       company: 'Safe Society',
       companyLink: null,
       location: 'Armenia, Quindío',
-      dates: 'March 2021 - February 2022',
+      dates: 'March 2023 - February 2024',
       descriptionPoints: [
         'Participated in all phases of complex web application development, including testing and deployment.',
         'Led the management of relational database migrations with Liquibase, ensuring data integrity.',
@@ -170,7 +170,7 @@ const experienceData = {
       company: 'Celuweb',
       companyLink: null,
       location: 'Armenia, Quindío',
-      dates: 'Octubre 2022 - Abril 2023',
+      dates: 'Octubre 2024 - Abril 2025',
       descriptionPoints: [
         'Participé en el mantenimiento y supervisión de los servidores en AWS y Azure, utilizando Docker y Kubernetes para la orquestación de contenedores.',
         'Trabajé en un servicio de web scraping a gran escala para extraer y procesar datos de e-commerce.',
@@ -185,7 +185,7 @@ const experienceData = {
       company: 'Tecnodiesel S.A.S',
       companyLink: null,
       location: 'Pereira, Risaralda',
-      dates: 'Marzo 2022 - Octubre 2022',
+      dates: 'Marzo 2024 - Octubre 2024',
       descriptionPoints: [
         'Desarrollé modelos predictivos con machine learning para optimizar la gestión de inventario de repuestos, el mantenimiento preventivo de maquinaria y la demanda energética.',
         'Integré datos de telemetría de maquinaria, sistemas ERP/CRM y fuentes de mercado para un análisis completo del rendimiento operativo.',
@@ -199,7 +199,7 @@ const experienceData = {
       company: 'Safe Society',
       companyLink: null,
       location: 'Armenia, Quindío',
-      dates: 'Marzo 2021 - Febrero 2022',
+      dates: 'Marzo 2023 - Febrero 2024',
       descriptionPoints: [
         'Participé en todas las fases del desarrollo de una aplicación web compleja, incluyendo pruebas y despliegue.',
         'Lideré la gestión de migraciones de bases de datos relacionales con Liquibase, asegurando la integridad de los datos.',
