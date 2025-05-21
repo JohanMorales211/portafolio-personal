@@ -43,8 +43,7 @@ const Portfolio = ({ language }) => {
         es: "Explorador visual de estructuras de carpetas con análisis de contenido de archivos y capacidades de visualización interactiva.",
       },
       technologies: { en: "TypeScript | JavaScript | HTML | CSS", es: "TypeScript | JavaScript | HTML | CSS" },
-      demoLink: "https://rshvwf.csb.app/",
-      githubLink: "https://github.com/JohanMorales211/folder-explorer",
+      demoLink: "https://rshvwf.csb.app/"
     },
     {
       id: 5,
