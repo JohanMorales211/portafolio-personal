@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/portafolio-personal/static/css/main.5ed8c9df.css",
-    "main.js": "/portafolio-personal/static/js/main.dd93fa3b.js",
+    "main.js": "/portafolio-personal/static/js/main.ba119ada.js",
     "static/media/foto_mia.png": "/portafolio-personal/static/media/foto_mia.61feecdb76ae1c40c42b.png",
     "static/media/tweets_x.png": "/portafolio-personal/static/media/tweets_x.1050f4206cd48fefd28c.png",
     "static/media/file_explorer.jpg": "/portafolio-personal/static/media/file_explorer.a93bcf63aae7ccffd8e1.jpg",
@@ -15,10 +15,10 @@
     "static/media/scrum_fundamentals.jpg": "/portafolio-personal/static/media/scrum_fundamentals.fc110aa77669580915d6.jpg",
     "index.html": "/portafolio-personal/index.html",
     "main.5ed8c9df.css.map": "/portafolio-personal/static/css/main.5ed8c9df.css.map",
-    "main.dd93fa3b.js.map": "/portafolio-personal/static/js/main.dd93fa3b.js.map"
+    "main.ba119ada.js.map": "/portafolio-personal/static/js/main.ba119ada.js.map"
   },
   "entrypoints": [
     "static/css/main.5ed8c9df.css",
-    "static/js/main.dd93fa3b.js"
+    "static/js/main.ba119ada.js"
   ]
 }
