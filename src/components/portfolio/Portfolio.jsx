@@ -4,14 +4,31 @@ import IMG_NU_CALCULATOR from "../../assets/imagen_nu.jpg";
 import IMG_REAL_TIME_TWEET from "../../assets/tweets_x.png";
 import IMG_FILE_EXPLORER from "../../assets/file_explorer.jpg";
 import IMG_SPOTIFY_TIME_FREE from "../../assets/spotify_time_free.png";
+import IMG_FILMIX from "../../assets/filmix.png";
 import "./portfolio.css";
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
+
 const Portfolio = ({ language }) => {
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [updateKey, setUpdateKey] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+
   const soloProjectsData = [
+    {
+      id: 6,
+      title: { en: "Filmix", es: "Filmix" },
+      img: IMG_FILMIX,
+      description: {
+        en: "Filmix is a web application made with Angular where you can explore a catalog of movies and series, discover details, watch trailers, and much more. This project is a key piece of my portfolio to demonstrate my front-end development skills.",
+        es: "Filmix es una aplicación web hecha con Angular donde puedes explorar un catálogo de películas y series, descubrir detalles, ver tráilers y mucho más. Este proyecto es una pieza clave de mi portafolio para demostrar mis habilidades en desarrollo front-end."
+      },
+      technologies: { 
+        en: "Angular | TypeScript | HTML | CSS | API Integration", 
+        es: "Angular | TypeScript | HTML | CSS | Integración API" 
+      },
+      demoLink: "https://johanmorales211.github.io/my-platform-cinema/home",
+    },
     {
       id: 1,
       title: { en: "Spotify Clone - Time Free", es: "Clon de Spotify - Time Free" },
@@ -58,6 +75,7 @@ const Portfolio = ({ language }) => {
       demoLink: "https://n4trp3.csb.app/",
     },
   ];
+
   const sectionContent = {
     en: {
       sectionSubtitle: "A Glimpse Into My",
@@ -76,27 +94,33 @@ const Portfolio = ({ language }) => {
       demo: "Demo en Vivo"
     },
   };
+
   const projectsToDisplayCount = 4;
   const projectsToShow = showAllProjects
     ? soloProjectsData
     : soloProjectsData.slice(0, projectsToDisplayCount);
+
   const handleClickShowMore = () => {
     setShowAllProjects(!showAllProjects);
     setUpdateKey(prevKey => prevKey + 1);
   };
+
   const openModalWithProject = (project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
     document.body.style.overflow = 'hidden';
   };
+
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedProject(null);
     document.body.style.overflow = 'auto';
   };
+
   useEffect(() => {
     const portfolioItems = document.querySelectorAll(".portfolio__item_clickable_area");
     if (portfolioItems.length === 0) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -106,13 +130,16 @@ const Portfolio = ({ language }) => {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 } 
     );
+
     portfolioItems.forEach((item) => observer.observe(item));
+
     return () => portfolioItems.forEach((item) => {
         if(item) observer.unobserve(item);
     });
   }, [updateKey, projectsToShow]);
+
   return (
     <>
       <section id="portfolio" className="portfolio_section">
@@ -158,6 +185,7 @@ const Portfolio = ({ language }) => {
           </div>
         )}
       </section>
+
       {selectedProject && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
           <div className="modal_project_image_container">
@@ -195,4 +223,5 @@ const Portfolio = ({ language }) => {
     </>
   );
 };
+
 export default Portfolio;
