@@ -99,8 +99,8 @@ const Topbar = ({ language }) => {
   }, []);
 
   const navContent = {
-    en: { home: "Home", specialization: "Specialization", work: "My Work", certificates: "Certificates", portfolio: "Portfolio", proExperience: "Experience", contact: "Contact" },
-    es: { home: "Inicio", specialization: "Especialización", work: "Mi Trabajo", certificates: "Certificados", portfolio: "Portafolio", proExperience: "Experiencia", contact: "Contacto" },
+    en: { home: "Home", specialization: "Specialization", work: "About Me", certificates: "Certificates", portfolio: "Portfolio", proExperience: "Experience", contact: "Contact" },
+    es: { home: "Inicio", specialization: "Especialización", work: "Sobre Mí", certificates: "Certificados", portfolio: "Portafolio", proExperience: "Experiencia", contact: "Contacto" },
   };
 
 

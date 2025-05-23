@@ -2,6 +2,7 @@ import React from "react";
 import { BsLinkedin } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 import "./footer.css";
+
 const Footer = ({ language }) => {
   const getYear = () => {
     let currentYear = new Date().getFullYear();
@@ -12,7 +13,7 @@ const Footer = ({ language }) => {
       logoText: "J.M.",
       home: "Home",
       specialization: "Specialization",
-      work: "My Work",
+      work: "About Me",
       portfolio: "Portfolio",
       proExperience: "Experience",
       contact: "Contact",
@@ -22,7 +23,7 @@ const Footer = ({ language }) => {
       logoText: "J.M.",
       home: "Inicio",
       specialization: "Especialización",
-      work: "Mi Trabajo",
+      work: "Sobre Mí",
       portfolio: "Portafolio",
       proExperience: "Experiencia",
       contact: "Contacto",

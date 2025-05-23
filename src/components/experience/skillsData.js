@@ -45,14 +45,6 @@ export const expertiseData = {
         accentColor: "var(--color-accent-pink)",
       },
     ],
-    otherTechnologiesIntro: "Beyond my core specializations, I also utilize various tools and methodologies to enhance development workflows and ensure project success:",
-    otherTechnologiesSkills: [
-        "Agile Methodologies (Scrum)",
-        "Data Analysis & Predictive Modeling (Python, Machine Learning)",
-        "Web Scraping",
-        "Version Control (Git)",
-        "CI/CD Practices",
-    ],
     backToTop: "Back to Top"
   },
   es: {
@@ -100,14 +92,6 @@ export const expertiseData = {
         ],
         accentColor: "var(--color-accent-pink)",
       },
-    ],
-    otherTechnologiesIntro: "Más allá de mis especializaciones principales, también utilizo diversas herramientas y metodologías para mejorar los flujos de trabajo de desarrollo y asegurar el éxito del proyecto:",
-    otherTechnologiesSkills: [
-        "Metodologías Ágiles (Scrum)",
-        "Análisis de Datos y Modelado Predictivo (Python, Machine Learning)",
-        "Web Scraping",
-        "Control de Versiones (Git)",
-        "Prácticas CI/CD",
     ],
     backToTop: "Volver Arriba"
   },

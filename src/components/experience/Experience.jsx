@@ -4,6 +4,7 @@ import "./experience.css";
 import { FiServer, FiCpu, FiDatabase } from "react-icons/fi";
 import { FaReact } from "react-icons/fa";
 import { BsTools, BsClipboardData } from "react-icons/bs";
+
 const expertiseIconComponents = {
   FiServer: FiServer,
   FiCpu: FiCpu,
@@ -12,10 +13,15 @@ const expertiseIconComponents = {
   BsTools: BsTools,
   BsClipboardData: BsClipboardData,
 };
+
 const Experience = ({ language }) => {
   const currentExpertiseData = expertiseData[language] || expertiseData.en;
+
   useEffect(() => {
-    const elementsToObserve = document.querySelectorAll(".expertise__card, .other_technologies_section");
+    const elementsToObserve = document.querySelectorAll(".expertise__card"); 
+    
+    if (elementsToObserve.length === 0) return;
+
     const observerCallback = (entries, observerInstance) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -29,12 +35,14 @@ const Experience = ({ language }) => {
     };
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     elementsToObserve.forEach((el) => observer.observe(el));
+    
     return () => {
       elementsToObserve.forEach((el) => {
         if (el) observer.unobserve(el);
       });
     };
   }, [currentExpertiseData, language]);
+
   return (
     <section id="experience">
       <div className="expertise__title_container container">
@@ -76,24 +84,6 @@ const Experience = ({ language }) => {
           );
         })}
       </div>
-      {currentExpertiseData.otherTechnologiesSkills && currentExpertiseData.otherTechnologiesSkills.length > 0 && (
-        <div
-          className="other_technologies_section container"
-          style={{'--card-index': currentExpertiseData.cards.length }}
-        >
-          <h3 className="other_technologies_title">
-            {language === 'en' ? "Tools & Methodologies" : "Herramientas y Metodologías"}
-          </h3>
-          {currentExpertiseData.otherTechnologiesIntro &&
-            <p className="other_technologies_intro">{currentExpertiseData.otherTechnologiesIntro}</p>
-          }
-          <ul className="expertise_skills_list other_tech_list">
-            {currentExpertiseData.otherTechnologiesSkills.map((skill, index) => (
-              <li key={index}>{skill}</li>
-            ))}
-          </ul>
-        </div>
-      )}
     </section>
   );
 };

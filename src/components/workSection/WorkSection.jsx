@@ -1,35 +1,19 @@
 import React, { useEffect } from "react";
 import "./workSection.css";
-import CV_File from "../../assets/my_resume.pdf";
 import MyPhoto from "../../assets/foto_mia.png";
-import { FiDownload } from "react-icons/fi";
-
-const GradientButton = ({ href, download, children, className }) => {
-  return (
-    <a href={href} download={download} className={`gradient_button_cv ${className || ''}`}>
-      {children}
-    </a>
-  );
-};
 
 const WorkSection = ({ language }) => {
   const content = {
     en: {
-      sectionTitle: "My Work",
+      sectionTitle: "About Me",
       description:
-        "Deployed scalable web applications and project management, always focused on learning and providing collaborative value. Ready to join teams where we can grow together! My experience includes building innovative solutions and optimizing performance.",
-      featuredProjectTitle: "My Resume",
-      projectDescription: "Take a look at my professional background and detailed experience.",
-      viewProjectButton: "View / Download CV",
+        "As a Software Engineer, I am actively seeking new professional opportunities where I can apply my knowledge and contribute to impactful projects in the technology sector. My goal is to continue expanding my skills in application development and project management, leveraging my experience in the full software development life cycle to create and enhance innovative solutions.",
       myPhotoAlt: "Photo of Johan Morales"
     },
     es: {
-      sectionTitle: "Mi Trabajo",
+      sectionTitle: "Sobre Mí",
       description:
-        "Desarrollé aplicaciones web escalables y participé en la gestión de proyectos, siempre enfocado en aprender y aportar valor colaborativo. ¡Listo para sumar a equipos donde crecer juntos! Mi experiencia incluye construir soluciones innovadoras y optimizar el rendimiento.",
-      featuredProjectTitle: "Mi Currículum",
-      projectDescription: "Echa un vistazo a mi trayectoria profesional y experiencia detallada.",
-      viewProjectButton: "Ver / Descargar CV",
+        "Como Ingeniero de Software, me encuentro en búsqueda activa de nuevas oportunidades profesionales donde pueda aplicar mis conocimientos y contribuir a proyectos de impacto en el sector tecnológico. Mi objetivo es seguir expandiendo mis habilidades en el desarrollo de aplicaciones y la gestión de proyectos, aprovechando mi experiencia en el ciclo de vida completo del desarrollo de software para crear y mejorar soluciones innovadoras.",
       myPhotoAlt: "Foto de Johan Morales"
     },
   };
@@ -69,18 +53,9 @@ const WorkSection = ({ language }) => {
             {content[language].description}
           </p>
         </div>
-        <div className="work_section_featured_cv">
-          <div className="cv_preview_area">
+        <div className="work_section_image_display">
+          <div className="about_me_image_container">
             <img src={MyPhoto} alt={content[language].myPhotoAlt} className="my_photo_image" />
-          </div>
-          <div className="featured_cv_details">
-            <p className="featured_cv_label">{language === 'es' ? "Documento Destacado" : "Featured Document"}</p>
-            <h3 className="featured_cv_title">{content[language].featuredProjectTitle}</h3>
-            <p className="featured_cv_description">{content[language].projectDescription}</p>
-            <GradientButton href={CV_File} download="Johan_Morales_CV.pdf">
-              <FiDownload style={{ marginRight: "0.5rem" }} />
-              {content[language].viewProjectButton}
-            </GradientButton>
           </div>
         </div>
       </div>
