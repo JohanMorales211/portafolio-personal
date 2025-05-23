@@ -75,7 +75,13 @@ const Experience = ({ language }) => {
                 {card.specificSkills && card.specificSkills.length > 0 && (
                   <ul className="expertise_skills_list">
                     {card.specificSkills.map((skill, skillIndex) => (
-                      <li key={skillIndex}>{skill}</li>
+                      <li key={skillIndex} className="skill_logo_item" title={skill.name}>
+                        <img 
+                          src={skill.logo} 
+                          alt={`${skill.name} logo`} 
+                          className="skill_logo_image"
+                        />
+                      </li>
                     ))}
                   </ul>
                 )}
