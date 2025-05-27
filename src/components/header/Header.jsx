@@ -3,7 +3,6 @@ import "./header.css";
 import HeaderSocials from "./HeaderSocials";
 import { useSprings, animated, easings } from "@react-spring/web";
 
-// El componente SplitText permanece igual
 const SplitText = ({
   text = "",
   className = "",
@@ -92,26 +91,20 @@ const SplitText = ({
   );
 };
 
-
 const Header = ({ language, onLanguageChange }) => {
-  // rolesData se define fuera del componente o al inicio del cuerpo del componente.
-  // Es constante y no cambia entre renders.
-  const rolesData = {
-    en: ["Backend", "Frontend", "Full Stack"],
-    es: ["Backend", "Frontend", "Full Stack"],
-  };
-
-  // 'content' se memoriza y depende de 'language' y de 'rolesData' (indirectamente, a través de las referencias)
-  // Para ser más explícitos y satisfacer a ESLint, podemos incluir rolesData directamente
-  // o las partes específicas de rolesData que se usan.
   const content = useMemo(() => {
-    const currentRoles = rolesData[language] || rolesData.en; // Obtener roles basados en el idioma
+    const rolesData = {
+      en: ["Backend", "Frontend", "Full Stack"],
+      es: ["Backend", "Frontend", "Full Stack"],
+    };
+    
+    const currentRoles = rolesData[language] || rolesData.en;
     return {
       en: {
         logoName: "jmorales",
         name: "Johan Morales",
         titlePart1: "SOFTWARE ENGINEER, ",
-        titlePart2Dynamic: rolesData.en, // Siempre usar la referencia original para estabilidad
+        titlePart2Dynamic: rolesData.en,
         titlePart3: " DEVELOPER.",
         asFeaturedIn: "AS FEATURED IN",
         scrollDown: "Scroll Down",
@@ -120,17 +113,14 @@ const Header = ({ language, onLanguageChange }) => {
         logoName: "jmorales",
         name: "Johan Morales",
         titlePart1: "INGENIERO DE SOFTWARE, DESARROLLADOR ",
-        titlePart2Dynamic: rolesData.es, // Siempre usar la referencia original para estabilidad
+        titlePart2Dynamic: rolesData.es,
         titlePart3: ".",
         asFeaturedIn: "PRESENTADO EN",
         scrollDown: "Desplázate hacia abajo",
       },
-      // Añadimos una propiedad para los roles dinámicos actuales basados en el idioma.
-      // Esto simplifica el acceso en el useEffect y para `roleToDisplay`.
       currentDynamicRoles: currentRoles,
     };
-  }, [language, rolesData]); // Dependencias: language y el objeto rolesData completo.
-                                 // Si rolesData nunca cambia, `language` es la principal causa de recálculo.
+  }, [language]);
   
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
@@ -144,7 +134,6 @@ const Header = ({ language, onLanguageChange }) => {
   }, [language, onLanguageChange]);
 
   useEffect(() => {
-    // Ahora 'content.currentDynamicRoles' es la fuente de los roles para la animación
     const currentDynamicRoles = content.currentDynamicRoles;
     
     const animationDuration = 500;
@@ -159,16 +148,11 @@ const Header = ({ language, onLanguageChange }) => {
     }, displayDuration + animationDuration);
 
     return () => clearInterval(interval);
-  // 'content' es la dependencia principal aquí. Como está memorizado y solo cambia
-  // cuando 'language' (o 'rolesData') cambia, este efecto se ejecutará correctamente.
   }, [content]); 
 
-  // El rol actual a mostrar, basado en el índice y los roles dinámicos actuales del content memorizado.
   const roleToDisplay = content.currentDynamicRoles[currentRoleIndex];
   
-  // Contenido para la UI, específico del idioma actual.
   const currentDisplayContent = content[language] || content.en;
-
 
   return (
     <header id="home">
@@ -211,7 +195,7 @@ const Header = ({ language, onLanguageChange }) => {
             className={`header__subtitle_dynamic_role ${isAnimatingOut ? 'animating-out' : 'animating-in'}`}
             key={language + '-' + roleToDisplay} 
           >
-            {roleToDisplay} {/* Se muestra el rol dinámico calculado */}
+            {roleToDisplay}
           </span>
           <span className="header__subtitle_static_part3">
             {currentDisplayContent.titlePart3}
@@ -227,4 +211,5 @@ const Header = ({ language, onLanguageChange }) => {
     </header>
   );
 };
+
 export default Header;
