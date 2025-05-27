@@ -1,18 +1,24 @@
 .app-footer {
-  background-color: var(--color-bg-hero);
+  background-color: transparent;
   color: var(--color-text-hero-subtitle);
   padding: 4rem 0 2rem 0;
   text-align: center;
   font-size: 0.9rem;
   margin-top: 7rem;
   border-top: 1px solid var(--color-card-border-expertise);
+  position: relative;
+  z-index: 1;
 }
+
 .footer__container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  position: relative;
+  z-index: 1;
 }
+
 .footer__logo {
   font-family: var(--font-family-logo);
   font-size: 1.8rem;
@@ -21,9 +27,11 @@
   text-decoration: none;
   transition: var(--transition);
 }
+
 .footer__logo:hover {
   color: var(--color-accent-hero-primary);
 }
+
 .footer__permalinks {
   display: flex;
   flex-wrap: wrap;
@@ -33,6 +41,7 @@
   padding: 0;
   list-style: none;
 }
+
 .footer__permalinks a {
   color: var(--color-text-hero-subtitle);
   text-decoration: none;
@@ -41,15 +50,18 @@
   padding: 0.3rem 0.5rem;
   border-radius: 4px;
 }
+
 .footer__permalinks a:hover {
   color: var(--color-accent-hero-primary);
-  background-color: rgba(var(--color-accent-hero-primary-rgb), 0.1);
+  background-color: rgba(var(--color-accent-hero-primary-rgb, 0, 198, 255), 0.1);
 }
+
 .footer__socials {
   display: flex;
   justify-content: center;
   gap: 1.2rem;
 }
+
 .footer__social-link {
   color: var(--color-text-hero-subtitle);
   font-size: 1.5rem;
@@ -60,25 +72,30 @@
   justify-content: center;
   transition: var(--transition);
 }
+
 .footer__social-link:hover {
   color: var(--color-accent-hero-primary);
-  background-color: rgba(var(--color-accent-hero-primary-rgb), 0.15);
+  background-color: rgba(var(--color-accent-hero-primary-rgb, 0, 198, 255), 0.15);
   transform: translateY(-3px) scale(1.1);
 }
+
 .footer__copyright {
   color: var(--color-text-hero-subtitle);
   font-size: 0.85rem;
   opacity: 0.8;
 }
+
 .footer__copyright small {
   display: block;
 }
+
 .footer__credits {
   margin-top: 0.5rem;
   font-style: italic;
   font-size: 0.75rem;
   opacity: 0.6;
 }
+
 @media screen and (max-width: 600px) {
   .app-footer {
     padding: 3rem 0 1.5rem 0;

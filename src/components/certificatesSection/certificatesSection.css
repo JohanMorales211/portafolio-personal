@@ -1,13 +1,16 @@
 .certificates_section {
-  background-color: var(--color-bg-expertise);
+  background-color: transparent;
   padding-top: 6rem;
   padding-bottom: 6rem;
   position: relative;
+  z-index: 1;
 }
 
 .certificates_section_header {
   text-align: left;
   margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .certificates_section_subtitle {
@@ -39,6 +42,8 @@
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
 }
 
 .certificates_invitation_message {
@@ -82,6 +87,8 @@
 
 .certificates_main_content_area {
   animation: fadeInCertificates 0.5s ease-out forwards;
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes fadeInCertificates {
@@ -139,16 +146,17 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
   opacity: 0;
   transform: translateY(30px);
+  position: relative;
+  z-index: 2;
 }
 
 .certificate-card.visible {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.5s ease-out calc(var(--card-index, 0) * 0.1s + var(--group-index, 0) * 0.2s),
-              transform 0.5s ease-out calc(var(--card-index, 0) * 0.1s + var(--group-index, 0) * 0.2s);
+  transition-delay: calc(var(--card-index, 0) * 0.1s + var(--group-index, 0) * 0.2s);
 }
 
 .certificate-card:hover {

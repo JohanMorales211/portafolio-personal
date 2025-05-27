@@ -10,6 +10,8 @@ import Footer from "./components/footer/Footer";
 import Topbar from "./components/topbar/Topbar";
 import FloatingActionButtons from "./components/floatingActionButtons/FloatingActionButtons";
 
+import videoBackground from "./assets/videos/header_background.mp4";
+
 const App = () => {
   const [language, setLanguage] = useState("en");
   const handleLanguageChange = (lang) => {
@@ -18,6 +20,17 @@ const App = () => {
 
   return (
     <>
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="app_background_video"
+      >
+        <source src={videoBackground} type="video/mp4" />
+        Tu navegador no soporta el tag de video.
+      </video>
+
       <Topbar language={language} />
       <FloatingActionButtons language={language} />
       <Header language={language} onLanguageChange={handleLanguageChange} />

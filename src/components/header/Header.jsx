@@ -91,6 +91,7 @@ const SplitText = ({
   );
 };
 
+
 const Header = ({ language, onLanguageChange }) => {
   const content = {
     en: {
@@ -141,7 +142,7 @@ const Header = ({ language, onLanguageChange }) => {
           <h1>
             <SplitText
               text={content[language].name}
-              delay={30} 
+              delay={30}
               animationFrom={{ opacity: 0, transform: "translate3d(0,60px,0)" }}
               animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
             />
@@ -156,7 +157,6 @@ const Header = ({ language, onLanguageChange }) => {
         <a href="#about" className="scroll__down_indicator" aria-label={content[language].scrollDown}>
         </a>
       </div>
-      <div className="header__abstract_bg"></div>
     </header>
   );
 };
