@@ -2,8 +2,10 @@ import React, { useEffect, useState, useRef, useMemo } from "react";
 import "./header.css";
 import HeaderSocials from "./HeaderSocials";
 import { useSprings, animated, easings } from "@react-spring/web";
-
 import snapSoundSrc from '../../assets/sounds/snap.mp3';
+
+import elevatorSoundSrc from '../../assets/sounds/elevator.mp3';
+
 
 const SplitText = ({
   text = "",
@@ -129,15 +131,23 @@ const Header = ({ language, onLanguageChange }) => {
 
   const playSnapSound = () => {
     const audio = new Audio(snapSoundSrc);
-    audio.volume = 0.7;
+    audio.volume = 0.7; 
     audio.play().catch(error => {
       console.error("Error al reproducir el sonido:", error);
     });
   };
 
+  const playElevatorSound = () => {
+    const audio = new Audio(elevatorSoundSrc);
+    audio.volume = 0.5;
+    audio.play().catch(error => {
+      console.error("Error al reproducir el sonido del elevador:", error);
+    });
+  };
+
   useEffect(() => {
     if (!language) {
-      onLanguageChange("en");
+      onLanguageChange("en"); 
     }
     setCurrentRoleIndex(0);
     setIsAnimatingOut(false);
@@ -165,7 +175,7 @@ const Header = ({ language, onLanguageChange }) => {
   const currentDisplayContent = content[language] || content.en;
 
   const handleLanguageButtonClick = (lang) => {
-    if (language !== lang) {
+    if (language !== lang) { 
         playSnapSound();
     }
     onLanguageChange(lang);
@@ -222,7 +232,12 @@ const Header = ({ language, onLanguageChange }) => {
         <div className="header__socials_container animate-on-load">
           <HeaderSocials />
         </div>
-        <a href="#about" className="scroll__down_indicator" aria-label={currentDisplayContent.scrollDown}>
+        <a 
+          href="#about" 
+          className="scroll__down_indicator" 
+          aria-label={currentDisplayContent.scrollDown}
+          onClick={playElevatorSound} 
+        >
         </a>
       </div>
     </header>
