@@ -15,7 +15,6 @@ const Footer = ({ language }) => {
       specialization: "Specialization",
       work: "About Me",
       portfolio: "Portfolio",
-      proExperience: "Experience",
       contact: "Contact",
       copyright: "All rights reserved.",
     },
@@ -25,7 +24,6 @@ const Footer = ({ language }) => {
       specialization: "Especialización",
       work: "Sobre Mí",
       portfolio: "Portafolio",
-      proExperience: "Experiencia",
       contact: "Contacto",
       copyright: "Todos los derechos reservados.",
     },
@@ -40,7 +38,6 @@ const Footer = ({ language }) => {
           <li><a href="#home">{content[language].home}</a></li>
           <li><a href="#experience">{content[language].specialization}</a></li>
           <li><a href="#work">{content[language].work}</a></li>
-          <li><a href="#professional-experience">{content[language].proExperience}</a></li>
           <li><a href="#portfolio">{content[language].portfolio}</a></li>
           <li><a href="#contact">{content[language].contact}</a></li>
         </ul>

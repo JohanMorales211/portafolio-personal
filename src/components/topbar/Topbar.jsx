@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { AiOutlineHome, AiOutlineProfile } from "react-icons/ai";
+import { AiOutlineHome } from "react-icons/ai";
 import { BiBook, BiMessageSquareDetail } from "react-icons/bi";
 import { RiBriefcase4Line, RiServiceLine, RiAwardLine } from "react-icons/ri";
 import "./topbar.css";
@@ -99,8 +99,8 @@ const Topbar = ({ language }) => {
   }, []);
 
   const navContent = {
-    en: { home: "Home", specialization: "Specialization", work: "About Me", certificates: "Certificates", portfolio: "Portfolio", proExperience: "Experience", contact: "Contact" },
-    es: { home: "Inicio", specialization: "Especialización", work: "Sobre Mí", certificates: "Certificados", portfolio: "Portafolio", proExperience: "Experiencia", contact: "Contacto" },
+    en: { home: "Home", specialization: "Specialization", work: "About Me", certificates: "Certificates", portfolio: "Portfolio", contact: "Contact" },
+    es: { home: "Inicio", specialization: "Especialización", work: "Sobre Mí", certificates: "Certificados", portfolio: "Portafolio", contact: "Contacto" },
   };
 
 
@@ -111,7 +111,6 @@ const Topbar = ({ language }) => {
       <a href="#work"  className={activeNav === "#work" ? "active" : ""} aria-label={navContent[language].work}><RiBriefcase4Line /></a>
       <a href="#certificates"  className={activeNav === "#certificates" ? "active" : ""} aria-label={navContent[language].certificates}><RiAwardLine /></a>
       <a href="#portfolio"  className={activeNav === "#portfolio" ? "active" : ""} aria-label={navContent[language].portfolio}><RiServiceLine /></a>
-      <a href="#professional-experience"  className={activeNav === "#professional-experience" ? "active" : ""} aria-label={navContent[language].proExperience}><AiOutlineProfile /></a>
       <a href="#contact"  className={activeNav === "#contact" ? "active" : ""} aria-label={navContent[language].contact}><BiMessageSquareDetail /></a>
     </nav>
   );
