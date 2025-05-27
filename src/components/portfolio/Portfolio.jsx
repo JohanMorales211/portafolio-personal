@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Modal from "../modal/Modal";
 import IMG_NU_CALCULATOR from "../../assets/imagen_nu.jpg";
 import IMG_REAL_TIME_TWEET from "../../assets/tweets_x.png";
 import IMG_FILE_EXPLORER from "../../assets/file_explorer.jpg";
@@ -11,8 +10,6 @@ import { FiGithub, FiExternalLink } from 'react-icons/fi';
 const Portfolio = ({ language }) => {
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [updateKey, setUpdateKey] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
 
   const soloProjectsData = [
     {
@@ -83,7 +80,8 @@ const Portfolio = ({ language }) => {
       showAll: "Show More",
       showLess: "Show Less",
       githubRepo: "GitHub",
-      demo: "Live Demo"
+      demo: "Live Demo",
+      technologiesLabel: "Technologies:",
     },
     es: {
       sectionSubtitle: "Un Vistazo A Mis",
@@ -91,7 +89,8 @@ const Portfolio = ({ language }) => {
       showAll: "Mostrar Más",
       showLess: "Mostrar Menos",
       githubRepo: "GitHub",
-      demo: "Demo en Vivo"
+      demo: "Demo en Vivo",
+      technologiesLabel: "Tecnologías:",
     },
   };
 
@@ -105,20 +104,8 @@ const Portfolio = ({ language }) => {
     setUpdateKey(prevKey => prevKey + 1);
   };
 
-  const openModalWithProject = (project) => {
-    setSelectedProject(project);
-    setIsModalOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedProject(null);
-    document.body.style.overflow = 'auto';
-  };
-
   useEffect(() => {
-    const portfolioItems = document.querySelectorAll(".portfolio__item_clickable_area");
+    const portfolioItems = document.querySelectorAll(".portfolio__item_card");
     if (portfolioItems.length === 0) return;
 
     const observer = new IntersectionObserver(
@@ -126,7 +113,6 @@ const Portfolio = ({ language }) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("show");
-          } else {
           }
         });
       },
@@ -141,86 +127,77 @@ const Portfolio = ({ language }) => {
   }, [updateKey, projectsToShow]);
 
   return (
-    <>
-      <section id="portfolio" className="portfolio_section">
-        <div className="container portfolio_section_header">
-          {sectionContent[language].sectionSubtitle && (
-              <h5 className="portfolio_section_subtitle">
-                  {sectionContent[language].sectionSubtitle}
-              </h5>
-          )}
-          <h2 className="portfolio_section_title">
-            {sectionContent[language].sectionTitle}
-            <span className="section_title_dot">.</span>
-          </h2>
-        </div>
-        <div className="container portfolio__container" key={updateKey}>
-          {projectsToShow.map((pro, index) => (
-            <div
-              className="portfolio__item_clickable_area"
-              key={pro.id}
-              style={{ '--card-index': index }}
-              onClick={() => openModalWithProject(pro)}
-              tabIndex={0}
-              onKeyPress={(e) => { if (e.key === 'Enter' || e.key === ' ') openModalWithProject(pro);}}
-              role="button"
-              aria-label={`View details for ${pro.title[language]}`}
-            >
-              <div className="portfolio__item-image_wrapper">
-                <img src={pro.img} alt={pro.title[language]} className="portfolio__item_bg_image"/>
-                <div className="portfolio__item_title_overlay">
-                  <h3 className="portfolio__item_image_title">{pro.title[language]}</h3>
+    <section id="portfolio" className="portfolio_section">
+      <div className="container portfolio_section_header">
+        {sectionContent[language].sectionSubtitle && (
+            <h5 className="portfolio_section_subtitle">
+                {sectionContent[language].sectionSubtitle}
+            </h5>
+        )}
+        <h2 className="portfolio_section_title">
+          {sectionContent[language].sectionTitle}
+          <span className="section_title_dot">.</span>
+        </h2>
+      </div>
+      <div className="container portfolio__container" key={updateKey}>
+        {projectsToShow.map((pro, index) => (
+          <article
+            className="portfolio__item_card"
+            key={pro.id}
+            style={{ '--card-index': index }}
+          >
+            <div className="portfolio__item_image_wrapper">
+              <img src={pro.img} alt={pro.title[language]} className="portfolio__item_bg_image"/>
+            </div>
+            <div className="portfolio__item_content_wrapper">
+              <h3 className="portfolio__item_title">{pro.title[language]}</h3>
+              <p className="portfolio__item_description">{pro.description[language]}</p>
+              <div className="portfolio__item_technologies">
+                <strong>{sectionContent[language].technologiesLabel}</strong>
+                <div className="portfolio__tech_tags_container">
+                  {pro.technologies[language].split(' | ').map((tech) => (
+                    <span key={tech} className="tech_tag_portfolio">{tech}</span>
+                  ))}
                 </div>
               </div>
+              <div className="portfolio__item_cta">
+                {pro.githubLink && (
+                  <a
+                    href={pro.githubLink}
+                    className="btn btn-secondary btn-pink-outline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${sectionContent[language].githubRepo} - ${pro.title[language]}`}
+                  >
+                    <FiGithub style={{ marginRight: "0.5em" }} /> {sectionContent[language].githubRepo}
+                  </a>
+                )}
+                {pro.demoLink && (
+                  <a
+                    href={pro.demoLink}
+                    className="btn btn-primary btn-pink-solid"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${sectionContent[language].demo} - ${pro.title[language]}`}
+                  >
+                    <FiExternalLink style={{ marginRight: "0.5em" }} /> {sectionContent[language].demo}
+                  </a>
+                )}
+              </div>
             </div>
-          ))}
+          </article>
+        ))}
+      </div>
+      {soloProjectsData.length > projectsToDisplayCount && (
+        <div className="portfolio__button_container">
+          <button className="btn btn-secondary btn-pink-outline" onClick={handleClickShowMore}>
+            {showAllProjects
+              ? sectionContent[language].showLess
+              : sectionContent[language].showAll}
+          </button>
         </div>
-        {soloProjectsData.length > projectsToDisplayCount && (
-          <div className="portfolio__button_container">
-            <button className="btn btn-secondary btn-pink-outline" onClick={handleClickShowMore}>
-              {showAllProjects
-                ? sectionContent[language].showLess
-                : sectionContent[language].showAll}
-            </button>
-          </div>
-        )}
-      </section>
-
-      {selectedProject && (
-        <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <div className="modal_project_image_container">
-            <img src={selectedProject.img} alt={selectedProject.title[language]} />
-          </div>
-          <h3 className="modal_project_title">{selectedProject.title[language]}</h3>
-          <p className="modal_project_description">{selectedProject.description[language]}</p>
-          <p className="modal_project_technologies">
-            <strong>{language === 'es' ? 'Tecnologías:' : 'Technologies:'}</strong> {selectedProject.technologies[language]}
-          </p>
-          <div className="modal_project_cta">
-            {selectedProject.githubLink && (
-              <a
-                href={selectedProject.githubLink}
-                className="btn btn-secondary btn-pink-outline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FiGithub style={{ marginRight: "0.5em" }} /> {sectionContent[language].githubRepo}
-              </a>
-            )}
-            {selectedProject.demoLink && (
-              <a
-                href={selectedProject.demoLink}
-                className="btn btn-primary btn-pink-solid"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FiExternalLink style={{ marginRight: "0.5em" }} /> {sectionContent[language].demo}
-              </a>
-            )}
-          </div>
-        </Modal>
       )}
-    </>
+    </section>
   );
 };
 
