@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "./header.css";
 import HeaderSocials from "./HeaderSocials";
 import { useSprings, animated, easings } from "@react-spring/web";
+
 const SplitText = ({
   text = "",
   className = "",
@@ -12,15 +13,13 @@ const SplitText = ({
   threshold = 0.1,
   rootMargin = "-100px",
   textAlign = "center",
-  onLetterAnimationComplete,
 }) => {
   const words = text.split(" ").map((word) => word.split(""));
   const letters = words.flat();
   const [inView, setInView] = useState(false);
   const ref = useRef(null);
-  const animatedCount = useRef(0);
+
   useEffect(() => {
-    animatedCount.current = 0;
     const currentRef = ref.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -42,26 +41,17 @@ const SplitText = ({
       }
     };
   }, [text, threshold, rootMargin]);
+
   const springs = useSprings(
     letters.length,
     letters.map((_, i) => ({
       from: animationFrom,
-      to: inView
-        ? async (next) => {
-            await next(animationTo);
-            animatedCount.current += 1;
-            if (
-              animatedCount.current === letters.length &&
-              onLetterAnimationComplete
-            ) {
-              onLetterAnimationComplete();
-            }
-          }
-        : animationFrom,
+      to: inView ? animationTo : animationFrom,
       delay: i * delay,
       config: { easing, tension: 280, friction: 60 },
     }))
   );
+
   let letterIndex = 0;
   return (
     <p
@@ -100,6 +90,7 @@ const SplitText = ({
     </p>
   );
 };
+
 const Header = ({ language, onLanguageChange }) => {
   const content = {
     en: {
@@ -117,15 +108,13 @@ const Header = ({ language, onLanguageChange }) => {
       scrollDown: "Desplázate hacia abajo",
     },
   };
-  const [nameAnimationComplete, setNameAnimationComplete] = useState(false);
-  const handleNameAnimationComplete = () => {
-    setNameAnimationComplete(true);
-  };
+  
   useEffect(() => {
     if (!language) {
       onLanguageChange("en");
     }
   }, [language, onLanguageChange]);
+
   return (
     <header id="home">
       <div className="header__app_logo">
@@ -152,17 +141,16 @@ const Header = ({ language, onLanguageChange }) => {
           <h1>
             <SplitText
               text={content[language].name}
-              delay={70}
-              onLetterAnimationComplete={handleNameAnimationComplete}
+              delay={30} 
               animationFrom={{ opacity: 0, transform: "translate3d(0,60px,0)" }}
               animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
             />
           </h1>
         </div>
-        <p className={`header__subtitle ${nameAnimationComplete ? "show" : "hide"}`}>
+        <p className="header__subtitle animate-on-load">
           {content[language].title}
         </p>
-        <div className={`header__socials_container ${nameAnimationComplete ? "show" : "hide"}`}>
+        <div className="header__socials_container animate-on-load">
           <HeaderSocials />
         </div>
         <a href="#about" className="scroll__down_indicator" aria-label={content[language].scrollDown}>
