@@ -3,11 +3,22 @@ import './certificatesSection.css';
 import { certificatesDataContent } from './certificatesData';
 import { FiExternalLink, FiDownload, FiAward, FiChevronDown, FiChevronUp } from 'react-icons/fi';
 
+import viewCertificatesSoundSrc from '../../assets/sounds/mouse_click.mp3';
+
 const CertificatesSection = ({ language }) => {
   const content = certificatesDataContent[language] || certificatesDataContent.en;
   const [areCertificatesVisible, setAreCertificatesVisible] = useState(false);
 
+  const playViewCertificatesSound = () => {
+    const audio = new Audio(viewCertificatesSoundSrc);
+    audio.volume = 0.7;
+    audio.play().catch(error => {
+      console.error("Error al reproducir el sonido de ver certificados:", error);
+    });
+  };
+
   const toggleCertificatesVisibility = () => {
+    playViewCertificatesSound();
     setAreCertificatesVisible(!areCertificatesVisible);
   };
 

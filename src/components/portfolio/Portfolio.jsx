@@ -7,9 +7,19 @@ import IMG_FILMIX from "../../assets/filmix.png";
 import "./portfolio.css";
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 
+import showMoreSoundSrc from '../../assets/sounds/mouse_click.mp3';
+
 const Portfolio = ({ language }) => {
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [updateKey, setUpdateKey] = useState(0);
+
+  const playShowMoreSound = () => {
+    const audio = new Audio(showMoreSoundSrc);
+    audio.volume = 0.7;
+    audio.play().catch(error => {
+      console.error("Error al reproducir el sonido 'show more':", error);
+    });
+  };
 
   const soloProjectsData = [
     {
@@ -20,9 +30,9 @@ const Portfolio = ({ language }) => {
         en: "Filmix is a web application made with Angular where you can explore a catalog of movies and series, discover details, watch trailers, and much more. This project is a key piece of my portfolio to demonstrate my front-end development skills.",
         es: "Filmix es una aplicación web hecha con Angular donde puedes explorar un catálogo de películas y series, descubrir detalles, ver tráilers y mucho más. Este proyecto es una pieza clave de mi portafolio para demostrar mis habilidades en desarrollo front-end."
       },
-      technologies: { 
-        en: "Angular | TypeScript | HTML | CSS | API Integration", 
-        es: "Angular | TypeScript | HTML | CSS | Integración API" 
+      technologies: {
+        en: "Angular | TypeScript | HTML | CSS | API Integration",
+        es: "Angular | TypeScript | HTML | CSS | Integración API"
       },
       demoLink: "https://johanmorales211.github.io/my-platform-cinema/home",
     },
@@ -100,6 +110,7 @@ const Portfolio = ({ language }) => {
     : soloProjectsData.slice(0, projectsToDisplayCount);
 
   const handleClickShowMore = () => {
+    playShowMoreSound();
     setShowAllProjects(!showAllProjects);
     setUpdateKey(prevKey => prevKey + 1);
   };
@@ -116,7 +127,7 @@ const Portfolio = ({ language }) => {
           }
         });
       },
-      { threshold: 0.1 } 
+      { threshold: 0.1 }
     );
 
     portfolioItems.forEach((item) => observer.observe(item));

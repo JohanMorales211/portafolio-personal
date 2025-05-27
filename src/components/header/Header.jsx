@@ -3,6 +3,8 @@ import "./header.css";
 import HeaderSocials from "./HeaderSocials";
 import { useSprings, animated, easings } from "@react-spring/web";
 
+import snapSoundSrc from '../../assets/sounds/snap.mp3';
+
 const SplitText = ({
   text = "",
   className = "",
@@ -125,6 +127,14 @@ const Header = ({ language, onLanguageChange }) => {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
 
+  const playSnapSound = () => {
+    const audio = new Audio(snapSoundSrc);
+    audio.volume = 0.7;
+    audio.play().catch(error => {
+      console.error("Error al reproducir el sonido:", error);
+    });
+  };
+
   useEffect(() => {
     if (!language) {
       onLanguageChange("en");
@@ -154,6 +164,13 @@ const Header = ({ language, onLanguageChange }) => {
   
   const currentDisplayContent = content[language] || content.en;
 
+  const handleLanguageButtonClick = (lang) => {
+    if (language !== lang) {
+        playSnapSound();
+    }
+    onLanguageChange(lang);
+  };
+
   return (
     <header id="home">
       <div className="header__app_logo">
@@ -162,13 +179,13 @@ const Header = ({ language, onLanguageChange }) => {
       <div className="header__top_actions">
         <div className="language-buttons">
           <button
-            onClick={() => onLanguageChange("en")}
+            onClick={() => handleLanguageButtonClick("en")}
             className={`btn ${language === "en" ? "active" : ""} btn-english`}
           >
             English
           </button>
           <button
-            onClick={() => onLanguageChange("es")}
+            onClick={() => handleLanguageButtonClick("es")}
             className={`btn ${language === "es" ? "active" : ""} btn-spanish`}
           >
             Español

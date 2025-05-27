@@ -4,11 +4,21 @@ import { BiBook, BiMessageSquareDetail } from "react-icons/bi";
 import { RiBriefcase4Line, RiServiceLine, RiAwardLine } from "react-icons/ri";
 import "./topbar.css";
 
+import mouseClickSoundSrc from '../../assets/sounds/mouse_click.mp3';
+
 const Topbar = ({ language }) => {
   const [activeNav, setActiveNav] = useState("#home");
   const [isHeaderScrolled, setIsHeaderScrolled] = useState(false);
   const observerRef = useRef(null);
   const sectionRefs = useRef({});
+
+  const playMouseClickSound = () => {
+    const audio = new Audio(mouseClickSoundSrc);
+    audio.volume = 0.6;
+    audio.play().catch(error => {
+      console.error("Error al reproducir el sonido de clic:", error);
+    });
+  };
 
   const registerRef = (id, el) => {
     if (el) {
@@ -106,12 +116,12 @@ const Topbar = ({ language }) => {
 
   return (
     <nav className={`app_topbar ${isHeaderScrolled ? 'scrolled-past-header-mobile' : 'at-header-top-mobile'}`}>
-      <a href="#home"  className={activeNav === "#home" ? "active" : ""} aria-label={navContent[language].home}><AiOutlineHome /></a>
-      <a href="#experience"  className={activeNav === "#experience" ? "active" : ""} aria-label={navContent[language].specialization}><BiBook /></a>
-      <a href="#work"  className={activeNav === "#work" ? "active" : ""} aria-label={navContent[language].work}><RiBriefcase4Line /></a>
-      <a href="#certificates"  className={activeNav === "#certificates" ? "active" : ""} aria-label={navContent[language].certificates}><RiAwardLine /></a>
-      <a href="#portfolio"  className={activeNav === "#portfolio" ? "active" : ""} aria-label={navContent[language].portfolio}><RiServiceLine /></a>
-      <a href="#contact"  className={activeNav === "#contact" ? "active" : ""} aria-label={navContent[language].contact}><BiMessageSquareDetail /></a>
+      <a href="#home" onClick={playMouseClickSound} className={activeNav === "#home" ? "active" : ""} aria-label={navContent[language].home}><AiOutlineHome /></a>
+      <a href="#experience" onClick={playMouseClickSound} className={activeNav === "#experience" ? "active" : ""} aria-label={navContent[language].specialization}><BiBook /></a>
+      <a href="#work" onClick={playMouseClickSound} className={activeNav === "#work" ? "active" : ""} aria-label={navContent[language].work}><RiBriefcase4Line /></a>
+      <a href="#certificates" onClick={playMouseClickSound} className={activeNav === "#certificates" ? "active" : ""} aria-label={navContent[language].certificates}><RiAwardLine /></a>
+      <a href="#portfolio" onClick={playMouseClickSound} className={activeNav === "#portfolio" ? "active" : ""} aria-label={navContent[language].portfolio}><RiServiceLine /></a>
+      <a href="#contact" onClick={playMouseClickSound} className={activeNav === "#contact" ? "active" : ""} aria-label={navContent[language].contact}><BiMessageSquareDetail /></a>
     </nav>
   );
 };
