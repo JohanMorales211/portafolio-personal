@@ -59,6 +59,7 @@
   padding-top: 56.25%;
   position: relative;
   overflow: hidden;
+  background-color: #111827; 
 }
 
 .portfolio__item_bg_image {
@@ -67,8 +68,14 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; 
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.portfolio__item_bg_image.contain-fit {
+  object-fit: contain;
+  padding: 1.5rem;
+  box-sizing: border-box;
 }
 
 .portfolio__item_card:hover .portfolio__item_bg_image {

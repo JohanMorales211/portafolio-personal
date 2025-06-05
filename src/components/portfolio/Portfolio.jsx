@@ -4,6 +4,7 @@ import IMG_REAL_TIME_TWEET from "../../assets/tweets_x.png";
 import IMG_FILE_EXPLORER from "../../assets/file_explorer.jpg";
 import IMG_SPOTIFY_TIME_FREE from "../../assets/spotify_time_free.png";
 import IMG_FILMIX from "../../assets/filmix.png";
+import IMG_LINGUAI from "../../assets/logo_languAI.png";
 import "./portfolio.css";
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 
@@ -22,6 +23,20 @@ const Portfolio = ({ language }) => {
   };
 
   const soloProjectsData = [
+    {
+      id: 7,
+      title: { en: "LinguAI", es: "LinguAI" },
+      img: IMG_LINGUAI,
+      description: {
+        en: "An intelligent language learning tool powered by AI. It provides not just direct translations but also contextual alternatives and usage examples, using the Cerebras API for advanced language processing.",
+        es: "Una herramienta inteligente para el aprendizaje de idiomas impulsada por IA. No solo ofrece traducciones directas, sino también alternativas contextuales y ejemplos de uso, utilizando la API de Cerebras para un procesamiento avanzado del lenguaje."
+      },
+      technologies: {
+        en: "Angular | TypeScript | Cerebras API | Tailwind CSS",
+        es: "Angular | TypeScript | API de Cerebras | Tailwind CSS"
+      },
+      demoLink: "https://johanmorales211.github.io/language-ai/",
+    },
     {
       id: 6,
       title: { en: "Filmix", es: "Filmix" },
@@ -158,7 +173,13 @@ const Portfolio = ({ language }) => {
             style={{ '--card-index': index }}
           >
             <div className="portfolio__item_image_wrapper">
-              <img src={pro.img} alt={pro.title[language]} className="portfolio__item_bg_image"/>
+              <img
+                src={pro.img}
+                alt={pro.title[language]}
+                className={`portfolio__item_bg_image ${
+                  pro.id === 7 ? 'contain-fit' : ''
+                }`}
+              />
             </div>
             <div className="portfolio__item_content_wrapper">
               <h3 className="portfolio__item_title">{pro.title[language]}</h3>
