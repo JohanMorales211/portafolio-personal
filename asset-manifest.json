@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/portafolio-personal/static/css/main.0ae8dc72.css",
-    "main.js": "/portafolio-personal/static/js/main.4814efe3.js",
+    "main.css": "/portafolio-personal/static/css/main.4e8c546b.css",
+    "main.js": "/portafolio-personal/static/js/main.909fdb95.js",
     "static/media/foto_mia.png": "/portafolio-personal/static/media/foto_mia.61feecdb76ae1c40c42b.png",
     "static/media/header_background.mp4": "/portafolio-personal/static/media/header_background.e8abf55e7aa066bd1e9c.mp4",
+    "static/media/logo_languAI.png": "/portafolio-personal/static/media/logo_languAI.5ebe9fc3372c58a77c33.png",
     "static/media/filmix.png": "/portafolio-personal/static/media/filmix.7c0664629513a0b11448.png",
+    "static/media/logo_chefsito.png": "/portafolio-personal/static/media/logo_chefsito.848a6ad502f4ff658439.png",
     "static/media/tweets_x.png": "/portafolio-personal/static/media/tweets_x.1050f4206cd48fefd28c.png",
-    "static/media/logo_languAI.png": "/portafolio-personal/static/media/logo_languAI.a8ec5b5ce5e870710b2e.png",
     "static/media/file_explorer.jpg": "/portafolio-personal/static/media/file_explorer.a93bcf63aae7ccffd8e1.jpg",
     "static/media/aws_partner.pdf": "/portafolio-personal/static/media/aws_partner.ec359315538cc21a65b9.pdf",
     "static/media/aws_cloud_essentials.pdf": "/portafolio-personal/static/media/aws_cloud_essentials.8fd4e2bc06730678d807.pdf",
@@ -26,11 +27,11 @@
     "static/media/hackerank_logo.png": "/portafolio-personal/static/media/hackerank_logo.eab675a51239a438321a.png",
     "static/media/scrum_fundamentals.jpg": "/portafolio-personal/static/media/scrum_fundamentals.fc110aa77669580915d6.jpg",
     "index.html": "/portafolio-personal/index.html",
-    "main.0ae8dc72.css.map": "/portafolio-personal/static/css/main.0ae8dc72.css.map",
-    "main.4814efe3.js.map": "/portafolio-personal/static/js/main.4814efe3.js.map"
+    "main.4e8c546b.css.map": "/portafolio-personal/static/css/main.4e8c546b.css.map",
+    "main.909fdb95.js.map": "/portafolio-personal/static/js/main.909fdb95.js.map"
   },
   "entrypoints": [
-    "static/css/main.0ae8dc72.css",
-    "static/js/main.4814efe3.js"
+    "static/css/main.4e8c546b.css",
+    "static/js/main.909fdb95.js"
   ]
 }
