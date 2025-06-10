@@ -56,7 +56,7 @@
 
 .portfolio__item_image_wrapper {
   width: 100%;
-  padding-top: 56.25%;
+  height: 280px; 
   position: relative;
   overflow: hidden;
   background-color: #111827; 
@@ -191,7 +191,7 @@
     gap: 2rem;
   }
   .portfolio__item_image_wrapper {
-    padding-top: 58%; 
+    height: 200px;
   }
   .portfolio__item_title {
     font-size: clamp(1.2rem, 2.2vw, 1.4rem);

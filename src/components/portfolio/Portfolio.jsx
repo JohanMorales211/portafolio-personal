@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import IMG_CHEFSITO from "../../assets/logo_chefsito.png";
 import IMG_NU_CALCULATOR from "../../assets/imagen_nu.jpg";
 import IMG_REAL_TIME_TWEET from "../../assets/tweets_x.png";
 import IMG_FILE_EXPLORER from "../../assets/file_explorer.jpg";
@@ -23,6 +24,20 @@ const Portfolio = ({ language }) => {
   };
 
   const soloProjectsData = [
+    {
+      id: 8,
+      title: { en: "Chefsito", es: "Chefsito" },
+      img: IMG_CHEFSITO,
+      description: {
+        en: "Recipe application with an integrated AI assistant. It allows users to resolve questions about ingredients and preparation in real-time. Built with Angular, it is fully responsive and focuses on a fluid user experience.",
+        es: "Aplicación de recetas con un asistente de IA integrado. Permite a los usuarios resolver dudas sobre ingredientes y preparación en tiempo real. Construido con Angular, es totalmente responsivo y se enfoca en una experiencia de usuario fluida."
+      },
+      technologies: {
+        en: "Angular | TypeScript | Cerebras API | Tailwind CSS",
+        es: "Angular | TypeScript | API de Cerebras | Tailwind CSS"
+      },
+      demoLink: "https://johanmorales211.github.io/recipes/home",
+    },
     {
       id: 7,
       title: { en: "LinguAI", es: "LinguAI" },
@@ -177,7 +192,7 @@ const Portfolio = ({ language }) => {
                 src={pro.img}
                 alt={pro.title[language]}
                 className={`portfolio__item_bg_image ${
-                  pro.id === 7 ? 'contain-fit' : ''
+                  [7, 8].includes(pro.id) ? 'contain-fit' : ''
                 }`}
               />
             </div>
