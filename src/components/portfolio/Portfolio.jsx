@@ -191,9 +191,7 @@ const Portfolio = ({ language }) => {
               <img
                 src={pro.img}
                 alt={pro.title[language]}
-                className={`portfolio__item_bg_image ${
-                  [7, 8].includes(pro.id) ? 'contain-fit' : ''
-                }`}
+                className="portfolio__item_bg_image"
               />
             </div>
             <div className="portfolio__item_content_wrapper">
