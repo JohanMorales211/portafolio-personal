@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import IMG_CHEFSITO from "../../assets/logo_chefsito.png";
 import IMG_NU_CALCULATOR from "../../assets/imagen_nu.jpg";
 import IMG_REAL_TIME_TWEET from "../../assets/tweets_x.png";
-import IMG_FILE_EXPLORER from "../../assets/file_explorer.jpg";
+import IMG_FILE_EXPLORER from "../../assets/file_explorer.png";
 import IMG_SPOTIFY_TIME_FREE from "../../assets/spotify_time_free.png";
 import IMG_FILMIX from "../../assets/filmix.png";
 import IMG_LINGUAI from "../../assets/logo_languAI.png";
@@ -78,17 +78,6 @@ const Portfolio = ({ language }) => {
       demoLink: "https://4ky9lr.csb.app/",
     },
     {
-      id: 2,
-      title: { en: "Real-Time Tweet Analysis with AI", es: "Análisis de Tweets en Tiempo Real con IA" },
-      img: IMG_REAL_TIME_TWEET,
-      description: {
-        en: "Advanced web scraping system combined with AI models for real-time Twitter/X analysis. Features sentiment analysis, word clouds, and AI-generated summaries using Cerebras technology.",
-        es: "Sistema avanzado de scraping web combinado con modelos de IA para análisis en tiempo real de Twitter/X. Incluye análisis de sentimientos, nubes de palabras y resúmenes generados por IA usando tecnología Cerebras.",
-      },
-      technologies: { en: "Flask | Selenium | Cerebras SDK | NLP", es: "Flask | Selenium | Cerebras SDK | NLP" },
-      githubLink: "https://github.com/JohanMorales211/ia-web-scraping",
-    },
-    {
       id: 3,
       title: { en: "File Explorer", es: "Explorador de Archivos" },
       img: IMG_FILE_EXPLORER,
@@ -97,7 +86,7 @@ const Portfolio = ({ language }) => {
         es: "Explorador visual de estructuras de carpetas con análisis de contenido de archivos y capacidades de visualización interactiva.",
       },
       technologies: { en: "TypeScript | JavaScript | HTML | CSS", es: "TypeScript | JavaScript | HTML | CSS" },
-      demoLink: "https://rshvwf.csb.app/"
+      demoLink: "https://johanmorales211.github.io/folder-explorer/"
     },
     {
       id: 5,
@@ -108,8 +97,18 @@ const Portfolio = ({ language }) => {
         es: "Calculadora financiera especializada para productos NU Colombia con cálculos de interés compuesto.",
       },
       technologies: { en: "React | TypeScript | Tailwind", es: "React | TypeScript | Tailwind" },
-      githubLink: "https://github.com/JohanMorales211/calculadora-interes-nu",
       demoLink: "https://n4trp3.csb.app/",
+    },
+    {
+      id: 2,
+      title: { en: "Real-Time Tweet Analysis with AI", es: "Análisis de Tweets en Tiempo Real con IA" },
+      img: IMG_REAL_TIME_TWEET,
+      description: {
+        en: "Advanced web scraping system combined with AI models for real-time Twitter/X analysis. Features sentiment analysis, word clouds, and AI-generated summaries using Cerebras technology.",
+        es: "Sistema avanzado de scraping web combinado con modelos de IA para análisis en tiempo real de Twitter/X. Incluye análisis de sentimientos, nubes de palabras y resúmenes generados por IA usando tecnología Cerebras.",
+      },
+      technologies: { en: "Flask | Selenium | Cerebras SDK | NLP", es: "Flask | Selenium | Cerebras SDK | NLP" },
+      githubLink: "https://github.com/JohanMorales211/ia-web-scraping",
     },
   ];
 
