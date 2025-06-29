@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+// IMAGENES DE PROYECTOS EXISTENTES
 import IMG_CHEFSITO from "../../assets/logo_chefsito.png";
 import IMG_NU_CALCULATOR from "../../assets/imagen_nu.jpg";
 import IMG_REAL_TIME_TWEET from "../../assets/tweets_x.png";
@@ -6,6 +8,10 @@ import IMG_FILE_EXPLORER from "../../assets/file_explorer.png";
 import IMG_SPOTIFY_TIME_FREE from "../../assets/spotify_time_free.png";
 import IMG_FILMIX from "../../assets/filmix.png";
 import IMG_LINGUAI from "../../assets/logo_languAI.png";
+
+// ===> 1. IMAGEN DEL NUEVO PROYECTO AÑADIDA <===
+import IMG_JOMAPS from "../../assets/foto_jomaps.jpeg"; 
+
 import "./portfolio.css";
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 
@@ -24,6 +30,20 @@ const Portfolio = ({ language }) => {
   };
 
   const soloProjectsData = [
+    {
+      id: 9,
+      title: { en: "Jomaps", es: "Jomaps" },
+      img: IMG_JOMAPS,
+      description: {
+        en: "An advanced mapping platform designed for visualization and route planning. It uses a powerful API to perform complex route calculations, considering not only latitude and longitude, but also terrain altitude for more accurate and efficient routing.",
+        es: "Una plataforma de mapeo avanzada, diseñada para la visualización y la planificación de rutas. Utiliza una potente API para realizar cálculos de ruta complejos, considerando no solo la latitud y longitud, sino también la altitud del terreno para un trazado de rutas más preciso y eficiente."
+      },
+      technologies: {
+        en: "React | JSX | Responsive Design | CSS Variables",
+        es: "React | JSX | Diseño Responsivo | Variables CSS"
+      },
+      demoLink: "https://johanmorales211.github.io/jomaps/",
+    },
     {
       id: 8,
       title: { en: "Chefsito", es: "Chefsito" },
