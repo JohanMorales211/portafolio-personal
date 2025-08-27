@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./workSection.css";
-import MyPhoto from "../../assets/foto_mia.png";
+import MyPhoto from "../../assets/foto_mia.jpeg";
 
 const WorkSection = ({ language }) => {
   const content = {
