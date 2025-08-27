@@ -1,8 +1,7 @@
 {
   "files": {
     "main.css": "/portafolio-personal/static/css/main.4e8c546b.css",
-    "main.js": "/portafolio-personal/static/js/main.57e814a8.js",
-    "static/media/foto_mia.png": "/portafolio-personal/static/media/foto_mia.61feecdb76ae1c40c42b.png",
+    "main.js": "/portafolio-personal/static/js/main.703a62d5.js",
     "static/media/header_background.mp4": "/portafolio-personal/static/media/header_background.e8abf55e7aa066bd1e9c.mp4",
     "static/media/file_explorer.png": "/portafolio-personal/static/media/file_explorer.e4fe79b4ff6206f4ffc3.png",
     "static/media/logo_languAI.png": "/portafolio-personal/static/media/logo_languAI.5ebe9fc3372c58a77c33.png",
@@ -13,6 +12,7 @@
     "static/media/aws_cloud_essentials.pdf": "/portafolio-personal/static/media/aws_cloud_essentials.8fd4e2bc06730678d807.pdf",
     "static/media/aws_observability.pdf": "/portafolio-personal/static/media/aws_observability.c569231ce3b037f56c28.pdf",
     "static/media/python_logo.png": "/portafolio-personal/static/media/python_logo.397eefce24a7451dd71c.png",
+    "static/media/foto_mia.jpeg": "/portafolio-personal/static/media/foto_mia.ea1eef02b0e3d34d5d26.jpeg",
     "static/media/foto_jomaps.jpeg": "/portafolio-personal/static/media/foto_jomaps.f708a904f84a1ee0e348.jpeg",
     "static/media/spotify_time_free.png": "/portafolio-personal/static/media/spotify_time_free.07c5745ac61d132b16d8.png",
     "static/media/angular_logo.png": "/portafolio-personal/static/media/angular_logo.d1e2466f600337669292.png",
@@ -29,10 +29,10 @@
     "static/media/scrum_fundamentals.jpg": "/portafolio-personal/static/media/scrum_fundamentals.fc110aa77669580915d6.jpg",
     "index.html": "/portafolio-personal/index.html",
     "main.4e8c546b.css.map": "/portafolio-personal/static/css/main.4e8c546b.css.map",
-    "main.57e814a8.js.map": "/portafolio-personal/static/js/main.57e814a8.js.map"
+    "main.703a62d5.js.map": "/portafolio-personal/static/js/main.703a62d5.js.map"
   },
   "entrypoints": [
     "static/css/main.4e8c546b.css",
-    "static/js/main.57e814a8.js"
+    "static/js/main.703a62d5.js"
   ]
 }
