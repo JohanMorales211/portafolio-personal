@@ -1,190 +1,101 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { MdOutlineEmail } from "react-icons/md";
 import { BsLinkedin, BsCheckCircleFill } from "react-icons/bs";
-import { FiCopy, FiXCircle } from "react-icons/fi";
+import { FaGithub } from "react-icons/fa";
+import { FiCopy } from "react-icons/fi";
 import "./contact.css";
 
-const Contact = ({ language }) => {
-  const myEmail = "johanmorales211@gmail.com";
+const MY_EMAIL = "johanmorales211@gmail.com";
 
-  const [copyNotification, setCopyNotification] = useState({
-    visible: false,
-    message: "",
-    type: "success",
-  });
+const Contact = ({ language }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const copyEmailToClipboard = () => {
     navigator.clipboard
-      .writeText(myEmail)
+      .writeText(MY_EMAIL)
       .then(() => {
-        setCopyNotification({
-          visible: true,
-          message:
-            language === "es"
-              ? "¡Correo copiado!"
-              : "Email copied!",
-          type: "success",
-        });
         setIsCopied(true);
-
-        setTimeout(() => {
-          setCopyNotification({ ...copyNotification, visible: false });
-          setIsCopied(false);
-        }, 2500);
+        setTimeout(() => setIsCopied(false), 2500);
       })
       .catch((err) => {
         console.error("Error al copiar el correo: ", err);
-        setCopyNotification({
-          visible: true,
-          message:
-            language === "es"
-              ? "Error al copiar."
-              : "Failed to copy.",
-          type: "error",
-        });
-        setIsCopied(false);
-
-        setTimeout(() => {
-          setCopyNotification({ ...copyNotification, visible: false });
-        }, 3000);
       });
   };
 
   const content = {
     en: {
-      sectionSubtitle: "Let's Connect",
-      sectionTitle: "Contact Me",
-      introText:
-        "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out!",
-      contactOptionEmail: "My Email",
-      emailInstruction:
-        "Feel free to send me an email. You can copy my address below:",
-      emailAddressLabel: "Email:",
-      copyEmailTooltip: "Copy Email",
-      copiedTooltip: "Copied!",
-      contactOptionLinkedIn: "LinkedIn",
-      linkedInDescription:
-        "Connect with me on LinkedIn for professional networking and discussions.",
-      connectOnLinkedIn: "Connect on LinkedIn",
+      kicker: "Contact",
+      title: "Have an idea, a project or a challenge to solve?",
+      description:
+        "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Let's talk!",
+      copyEmail: "Copy email",
+      copied: "Copied!",
+      writeMe: "Write me",
+      connectLinkedIn: "LinkedIn",
+      github: "GitHub",
     },
     es: {
-      sectionSubtitle: "Conectemos",
-      sectionTitle: "Contáctame",
-      introText:
-        "Siempre estoy abierto a discutir nuevos proyectos, ideas creativas u oportunidades para ser parte de tus visiones. ¡No dudes en contactarme!",
-      contactOptionEmail: "Mi Correo",
-      emailInstruction:
-        "No dudes en enviarme un correo. Puedes copiar mi dirección a continuación:",
-      emailAddressLabel: "Correo:",
-      copyEmailTooltip: "Copiar Correo",
-      copiedTooltip: "¡Copiado!",
-      contactOptionLinkedIn: "LinkedIn",
-      linkedInDescription:
-        "Conéctate conmigo en LinkedIn para networking profesional y discusiones.",
-      connectOnLinkedIn: "Conectar en LinkedIn",
+      kicker: "Contacto",
+      title: "¿Tienes una idea, un proyecto o un reto por resolver?",
+      description:
+        "Siempre estoy abierto a discutir nuevos proyectos, ideas creativas u oportunidades para ser parte de tus visiones. ¡Hablemos!",
+      copyEmail: "Copiar correo",
+      copied: "¡Copiado!",
+      writeMe: "Escríbeme",
+      connectLinkedIn: "LinkedIn",
+      github: "GitHub",
     },
   };
 
-  useEffect(() => {
-    if (copyNotification.visible) {
-      setCopyNotification({ ...copyNotification, visible: false });
-      setIsCopied(false);
-    }
-  }, [language]);
-
+  const t = content[language] || content.en;
 
   return (
-    <section id="contact" className="contact-section">
-      <div className="container section-header contact-header-override">
-        <h5 className="section-subtitle">
-          {content[language].sectionSubtitle}
-        </h5>
-        <h2 className="section-title">
-          {content[language].sectionTitle}
-          <span className="title-dot contact-title-dot">.</span>
-        </h2>
-      </div>
-      <div className="container contact__container">
-        <p className="contact__intro-text">{content[language].introText}</p>
-        <div className="contact__options-grid">
-          <article className="contact__option_card email-card">
-            <div className="contact__option_icon-wrapper">
-              <MdOutlineEmail className="contact__option_icon" />
-            </div>
-            <h4 className="contact__option_title">
-              {content[language].contactOptionEmail}
-            </h4>
-            <p className="contact__option_description email-instruction">
-              {content[language].emailInstruction}
-            </p>
-            <div className="email-address-wrapper">
-              <div className="email-address-container">
-                <span
-                  className="email-address-text"
-                  title={
-                    isCopied
-                      ? content[language].copiedTooltip
-                      : content[language].copyEmailTooltip +
-                        " (Click para intentar copiar)"
-                  }
-                >
-                  {myEmail}
-                </span>
-                <button
-                  onClick={copyEmailToClipboard}
-                  className={`copy-email-button ${isCopied ? 'copied' : ''}`}
-                  aria-label={isCopied ? content[language].copiedTooltip : content[language].copyEmailTooltip}
-                  title={isCopied ? content[language].copiedTooltip : content[language].copyEmailTooltip}
-                >
-                  {isCopied ? <BsCheckCircleFill /> : <FiCopy />}
-                </button>
-              </div>
-              {copyNotification.visible && (
-                <div
-                  className={`copy-notification ${copyNotification.type} ${
-                    copyNotification.visible ? "show" : ""
-                  }`}
-                  role="alert"
-                >
-                  {copyNotification.type === "success" ? (
-                    <BsCheckCircleFill className="notification-icon" />
-                  ) : (
-                    <FiXCircle className="notification-icon" />
-                  )}
-                  {copyNotification.message}
-                </div>
-              )}
-            </div>
-            <p className="contact__final-text-email">
-              {language === "es"
-                ? "Espero tu mensaje."
-                : "Looking forward to your message."}
-            </p>
-          </article>
-          <article className="contact__option_card">
-            <div className="contact__option_icon-wrapper">
-              <BsLinkedin className="contact__option_icon" />
-            </div>
-            <h4 className="contact__option_title">
-              {content[language].contactOptionLinkedIn}
-            </h4>
-            <p className="contact__option_description">
-              {content[language].linkedInDescription}
-            </p>
+    <section id="contacto" className="contact">
+      <div className="container">
+        <div className="contact__card">
+          <span className="section-kicker">{t.kicker}</span>
+          <h2 className="contact__title">{t.title}</h2>
+          <span className="gold-divider" />
+          <p className="contact__description">{t.description}</p>
+
+          <div className="contact__email-row">
+            <span className="contact__email">{MY_EMAIL}</span>
+            <button
+              onClick={copyEmailToClipboard}
+              className={`contact__copy-btn ${isCopied ? "copied" : ""}`}
+              aria-label={isCopied ? t.copied : t.copyEmail}
+              title={isCopied ? t.copied : t.copyEmail}
+            >
+              {isCopied ? <BsCheckCircleFill /> : <FiCopy />}
+              <span>{isCopied ? t.copied : t.copyEmail}</span>
+            </button>
+          </div>
+
+          <div className="contact__actions">
+            <a href={`mailto:${MY_EMAIL}`} className="btn btn-gold">
+              <MdOutlineEmail /> {t.writeMe}
+            </a>
             <a
               href="https://www.linkedin.com/in/johan-morales-b3809b206/"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-secondary contact__option_btn linkedin-btn"
+              className="btn btn-outline"
             >
-              <BsLinkedin style={{ marginRight: "0.5em" }} />
-              {content[language].connectOnLinkedIn}
+              <BsLinkedin /> {t.connectLinkedIn}
             </a>
-          </article>
+            <a
+              href="https://github.com/JohanMorales211"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline"
+            >
+              <FaGithub /> {t.github}
+            </a>
+          </div>
         </div>
       </div>
     </section>
   );
 };
+
 export default Contact;

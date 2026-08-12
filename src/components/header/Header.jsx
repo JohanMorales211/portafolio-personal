@@ -1,244 +1,182 @@
-import React, { useEffect, useState, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import "./header.css";
-import HeaderSocials from "./HeaderSocials";
-import { useSprings, animated, easings } from "@react-spring/web";
-import snapSoundSrc from '../../assets/sounds/snap.mp3';
+import { FiMapPin, FiFileText } from "react-icons/fi";
+import { BsLinkedin } from "react-icons/bs";
+import { FaGithub } from "react-icons/fa";
+import MyPhoto from "../../assets/foto_mia.jpeg";
 
-import elevatorSoundSrc from '../../assets/sounds/elevator.mp3';
-
-
-const SplitText = ({
-  text = "",
-  className = "",
-  delay = 100,
-  animationFrom = { opacity: 0, transform: "translate3d(0,40px,0)" },
-  animationTo = { opacity: 1, transform: "translate3d(0,0,0)" },
-  easing = easings.easeOutCubic,
-  threshold = 0.1,
-  rootMargin = "-100px",
-  textAlign = "center",
-}) => {
-  const words = text.split(" ").map((word) => word.split(""));
-  const letters = words.flat();
-  const [inView, setInView] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const currentRef = ref.current;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          if (currentRef) {
-            observer.unobserve(currentRef);
-          }
-        }
-      },
-      { threshold, rootMargin }
-    );
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, [text, threshold, rootMargin]);
-
-  const springs = useSprings(
-    letters.length,
-    letters.map((_, i) => ({
-      from: animationFrom,
-      to: inView ? animationTo : animationFrom,
-      delay: i * delay,
-      config: { easing, tension: 280, friction: 60 },
-    }))
-  );
-
-  let letterIndex = 0;
-  return (
-    <p
-      ref={ref}
-      className={`split-parent ${className}`}
-      style={{
-        textAlign,
-        overflow: "hidden",
-        display: "inline-block",
-        whiteSpace: "normal",
-        wordWrap: "break-word",
-      }}
-    >
-      {words.map((word, wordIdx) => (
-        <span
-          key={wordIdx}
-          style={{ display: "inline-block", whiteSpace: "nowrap", marginRight: '0.3em' }}
-        >
-          {word.map((letter, charIdx) => {
-            const currentSpring = springs[letterIndex++];
-            return (
-              <animated.span
-                key={`${wordIdx}-${charIdx}`}
-                style={{
-                  ...currentSpring,
-                  display: "inline-block",
-                  willChange: "transform, opacity",
-                }}
-              >
-                {letter}
-              </animated.span>
-            );
-          })}
-        </span>
-      ))}
-    </p>
-  );
+const TYPED_WORDS = {
+  en: ["Full Stack", "Backend", "Frontend", "Remote"],
+  es: ["Full Stack", "Backend", "Frontend", "Remoto"],
 };
 
-const Header = ({ language, onLanguageChange }) => {
-  const content = useMemo(() => {
-    const rolesData = {
-      en: ["Backend", "Frontend", "Full Stack"],
-      es: ["Backend", "Frontend", "Full Stack"],
-    };
-    
-    const currentRoles = rolesData[language] || rolesData.en;
-    return {
+const TYPE_SPEED = 90;
+const DELETE_SPEED = 45;
+const HOLD_TIME = 1800;
+
+const Header = ({ language }) => {
+  const [typedText, setTypedText] = useState("");
+  const contentRef = useRef(null);
+
+  const content = useMemo(
+    () => ({
       en: {
-        logoName: "jmorales",
-        name: "Johan Morales",
-        titlePart1: "SOFTWARE ENGINEER, ",
-        titlePart2Dynamic: rolesData.en,
-        titlePart3: " DEVELOPER.",
-        asFeaturedIn: "AS FEATURED IN",
-        scrollDown: "Scroll Down",
+        available: "AVAILABLE",
+        greeting: "Hi, I'm",
+        firstName: "Johan",
+        lastName: "Morales",
+        location: "Colombia · Remote",
+        pitch:
+          "I build software solutions for national and international businesses. Available for remote projects with companies and clients.",
+        downloadCV: "Download resume",
+        photoAlt: "Photo of Johan Morales",
       },
       es: {
-        logoName: "jmorales",
-        name: "Johan Morales",
-        titlePart1: "INGENIERO DE SOFTWARE, DESARROLLADOR ",
-        titlePart2Dynamic: rolesData.es,
-        titlePart3: ".",
-        asFeaturedIn: "PRESENTADO EN",
-        scrollDown: "Desplázate hacia abajo",
+        available: "DISPONIBLE",
+        greeting: "Hola, soy",
+        firstName: "Johan",
+        lastName: "Morales",
+        location: "Colombia · Remoto",
+        pitch:
+          "Desarrollo soluciones de software para negocios nacionales e internacionales. Disponible para proyectos remotos con empresas y clientes.",
+        downloadCV: "Descargar hoja de vida",
+        photoAlt: "Foto de Johan Morales",
       },
-      currentDynamicRoles: currentRoles,
+    }),
+    []
+  );
+
+  const t = content[language] || content.en;
+  const words = TYPED_WORDS[language] || TYPED_WORDS.en;
+
+  // ==== Animación de escritura (typing) ====
+  useEffect(() => {
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    let timeoutId;
+
+    const tick = () => {
+      const word = words[wordIndex % words.length];
+
+      if (!deleting) {
+        charIndex++;
+        setTypedText(word.slice(0, charIndex));
+        if (charIndex === word.length) {
+          deleting = true;
+          timeoutId = setTimeout(tick, HOLD_TIME);
+          return;
+        }
+        timeoutId = setTimeout(tick, TYPE_SPEED);
+      } else {
+        charIndex--;
+        setTypedText(word.slice(0, charIndex));
+        if (charIndex === 0) {
+          deleting = false;
+          wordIndex++;
+          timeoutId = setTimeout(tick, 350);
+          return;
+        }
+        timeoutId = setTimeout(tick, DELETE_SPEED);
+      }
     };
-  }, [language]);
-  
-  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
-  const [isAnimatingOut, setIsAnimatingOut] = useState(false);
 
-  const playSnapSound = () => {
-    const audio = new Audio(snapSoundSrc);
-    audio.volume = 0.7; 
-    audio.play().catch(error => {
-      console.error("Error al reproducir el sonido:", error);
-    });
-  };
+    setTypedText("");
+    timeoutId = setTimeout(tick, 400);
+    return () => clearTimeout(timeoutId);
+  }, [language, words]);
 
-  const playElevatorSound = () => {
-    const audio = new Audio(elevatorSoundSrc);
-    audio.volume = 0.5;
-    audio.play().catch(error => {
-      console.error("Error al reproducir el sonido del elevador:", error);
-    });
-  };
-
+  // ==== Animación de desplazamiento al scrollear (parallax + fade) ====
   useEffect(() => {
-    if (!language) {
-      onLanguageChange("en"); 
-    }
-    setCurrentRoleIndex(0);
-    setIsAnimatingOut(false);
-  }, [language, onLanguageChange]);
+    const el = contentRef.current;
+    if (!el) return;
 
-  useEffect(() => {
-    const currentDynamicRoles = content.currentDynamicRoles;
-    
-    const animationDuration = 500;
-    const displayDuration = 2500;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion) return;
 
-    const interval = setInterval(() => {
-      setIsAnimatingOut(true);
-      setTimeout(() => {
-        setCurrentRoleIndex((prevIndex) => (prevIndex + 1) % currentDynamicRoles.length);
-        setIsAnimatingOut(false);
-      }, animationDuration);
-    }, displayDuration + animationDuration);
+    let rafId = 0;
 
-    return () => clearInterval(interval);
-  }, [content]); 
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const limit = window.innerHeight * 0.9;
+        const progress = Math.min(y / limit, 1);
+        el.style.transform = `translateY(${y * 0.25}px)`;
+        el.style.opacity = `${1 - progress * 1.1}`;
+      });
+    };
 
-  const roleToDisplay = content.currentDynamicRoles[currentRoleIndex];
-  
-  const currentDisplayContent = content[language] || content.en;
-
-  const handleLanguageButtonClick = (lang) => {
-    if (language !== lang) { 
-        playSnapSound();
-    }
-    onLanguageChange(lang);
-  };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
 
   return (
-    <header id="home">
-      <div className="header__app_logo">
-        {currentDisplayContent.logoName}<span className="header__app_logo_accent">.</span><span className="header__app_logo_cursor">_</span>
-      </div>
-      <div className="header__top_actions">
-        <div className="language-buttons">
-          <button
-            onClick={() => handleLanguageButtonClick("en")}
-            className={`btn ${language === "en" ? "active" : ""} btn-english`}
-          >
-            English
-          </button>
-          <button
-            onClick={() => handleLanguageButtonClick("es")}
-            className={`btn ${language === "es" ? "active" : ""} btn-spanish`}
-          >
-            Español
-          </button>
+    <header id="inicio" className="hero">
+      <div className="container hero__container" ref={contentRef}>
+        <div className="hero__photo-column">
+          <div className="hero__photo-card">
+            <img src={MyPhoto} alt={t.photoAlt} className="hero__photo" />
+          </div>
+          <span className="hero__available-badge">
+            <span className="hero__available-dot" />
+            {t.available}
+          </span>
         </div>
-      </div>
-      <div className="container header__container">
-        <div className="header__main_name">
-          <h1>
-            <SplitText
-              text={currentDisplayContent.name}
-              delay={30}
-              animationFrom={{ opacity: 0, transform: "translate3d(0,60px,0)" }}
-              animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
-            />
+
+        <div className="hero__text-column">
+          <h1 className="hero__title">
+            {t.greeting}
+            <br />
+            {t.firstName} <span className="hero__title-gold">{t.lastName}</span>
           </h1>
+
+          <p className="hero__typed" aria-live="polite">
+            <span className="hero__typed-text">{typedText}</span>
+            <span className="hero__typed-cursor" aria-hidden="true" />
+          </p>
+
+          <p className="hero__location">
+            <FiMapPin /> {t.location}
+          </p>
+
+          <p className="hero__pitch">{t.pitch}</p>
+
+          <div className="hero__actions">
+            <a
+              href="https://github.com/JohanMorales211"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero__social-btn"
+              aria-label="GitHub"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/johan-morales-b3809b206/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero__social-btn"
+              aria-label="LinkedIn"
+            >
+              <BsLinkedin />
+            </a>
+            <a
+              href={`${process.env.PUBLIC_URL}/hoja_de_vida.pdf`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline hero__cv-btn"
+            >
+              <FiFileText /> {t.downloadCV}
+            </a>
+          </div>
         </div>
-        
-        <div className="header__subtitle_container animate-on-load">
-          <span className="header__subtitle_static_part1">
-            {currentDisplayContent.titlePart1}
-          </span>
-          <span 
-            className={`header__subtitle_dynamic_role ${isAnimatingOut ? 'animating-out' : 'animating-in'}`}
-            key={language + '-' + roleToDisplay} 
-          >
-            {roleToDisplay}
-          </span>
-          <span className="header__subtitle_static_part3">
-            {currentDisplayContent.titlePart3}
-          </span>
-        </div>
-        
-        <div className="header__socials_container animate-on-load">
-          <HeaderSocials />
-        </div>
-        <a 
-          href="#about" 
-          className="scroll__down_indicator" 
-          aria-label={currentDisplayContent.scrollDown}
-          onClick={playElevatorSound} 
-        >
-        </a>
       </div>
     </header>
   );

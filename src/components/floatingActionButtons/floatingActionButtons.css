@@ -1,45 +1,34 @@
-.floating-action-buttons-container {
+.fab-back-to-top {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  z-index: 1000;
-}
-.fab {
-  width: 48px;
-  height: 48px;
-  background-color: var(--color-white);
-  color: var(--color-bg-hero);
-  border-radius: 12px;
-  display: flex;
+  z-index: 90;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 1.6rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid rgba(0,0,0,0.05);
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 50%;
+  font-size: 1.35rem;
+  color: var(--brand-ink);
+  background: var(--surface-glass);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-card);
+  animation: fadeUp 0.3s ease-out;
 }
-.fab:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+
+.fab-back-to-top:hover {
+  border-color: var(--brand-500);
+  color: var(--brand-ink);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
 }
-.fab-contact {}
-.fab-contact:hover {}
-.fab-back-to-top {}
-.fab-back-to-top:hover {}
+
 @media screen and (max-width: 600px) {
-  .floating-action-buttons-container {
-    bottom: 1.5rem;
-    right: 1.5rem;
-    gap: 0.6rem;
-  }
-  .fab {
-    width: 42px;
-    height: 42px;
-    font-size: 1.4rem;
+  .fab-back-to-top {
+    bottom: 1.25rem;
+    right: 1.25rem;
   }
 }

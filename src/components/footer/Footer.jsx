@@ -4,50 +4,55 @@ import { FaGithub } from "react-icons/fa";
 import "./footer.css";
 
 const Footer = ({ language }) => {
-  const getYear = () => {
-    let currentYear = new Date().getFullYear();
-    return currentYear;
-  };
+  const year = new Date().getFullYear();
+
   const content = {
     en: {
-      logoText: "J.M.",
       home: "Home",
-      specialization: "Specialization",
-      work: "About Me",
-      portfolio: "Portfolio",
+      tech: "Tech Stack",
+      about: "About",
+      certificates: "Certificates",
+      projects: "Projects",
       contact: "Contact",
       copyright: "All rights reserved.",
+      built: "Built with React",
     },
     es: {
-      logoText: "J.M.",
       home: "Inicio",
-      specialization: "Especialización",
-      work: "Sobre Mí",
-      portfolio: "Portafolio",
+      tech: "Tecnologías",
+      about: "Sobre mí",
+      certificates: "Certificados",
+      projects: "Proyectos",
       contact: "Contacto",
       copyright: "Todos los derechos reservados.",
+      built: "Hecho con React",
     },
   };
+
+  const t = content[language] || content.en;
+
   return (
-    <footer className="app-footer">
+    <footer className="footer">
       <div className="container footer__container">
-        <a href="#home" className="footer__logo">
-          {content[language].logoText}
+        <a href="#inicio" className="footer__logo">
+          jmorales<span>.</span>
         </a>
-        <ul className="footer__permalinks">
-          <li><a href="#home">{content[language].home}</a></li>
-          <li><a href="#experience">{content[language].specialization}</a></li>
-          <li><a href="#work">{content[language].work}</a></li>
-          <li><a href="#portfolio">{content[language].portfolio}</a></li>
-          <li><a href="#contact">{content[language].contact}</a></li>
+
+        <ul className="footer__links">
+          <li><a href="#inicio">{t.home}</a></li>
+          <li><a href="#tecnologias">{t.tech}</a></li>
+          <li><a href="#sobre-mi">{t.about}</a></li>
+          <li><a href="#certificados">{t.certificates}</a></li>
+          <li><a href="#proyectos">{t.projects}</a></li>
+          <li><a href="#contacto">{t.contact}</a></li>
         </ul>
+
         <div className="footer__socials">
           <a
             href="https://www.linkedin.com/in/johan-morales-b3809b206/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="footer__social-link"
           >
             <BsLinkedin />
           </a>
@@ -56,18 +61,20 @@ const Footer = ({ language }) => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="footer__social-link"
           >
             <FaGithub />
           </a>
         </div>
-        <div className="footer__copyright">
+
+        <div className="footer__bottom">
           <small>
-            © {getYear()} Johan Morales. {content[language].copyright}
+            © {year} Johan Morales. {t.copyright}
           </small>
+          <small className="footer__built">{t.built}</small>
         </div>
       </div>
     </footer>
   );
 };
+
 export default Footer;
