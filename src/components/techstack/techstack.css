@@ -2,12 +2,10 @@
   margin-bottom: 2.5rem;
 }
 
-/* ==== Marquee de scroll horizontal infinito ==== */
 .techstack__marquee {
   position: relative;
   overflow: hidden;
   padding: 1rem 0;
-  /* desvanecido en los bordes */
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
@@ -20,16 +18,11 @@
   will-change: transform;
 }
 
-.techstack__marquee:hover .techstack__track {
-  animation-play-state: paused;
-}
-
 @keyframes marqueeScroll {
   from {
     transform: translateX(0);
   }
   to {
-    /* la lista está repetida 4 veces: -50% = 2 copias exactas, sin salto ni hueco */
     transform: translateX(-50%);
   }
 }
@@ -43,7 +36,6 @@
   }
 }
 
-/* ==== Cards ==== */
 .techstack__card {
   display: flex;
   flex-direction: column;
@@ -61,7 +53,7 @@
 
 .techstack__card:hover {
   border-color: rgba(212, 175, 55, 0.45);
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.05);
   box-shadow: var(--shadow-card-hover);
 }
 

@@ -12,7 +12,37 @@ import IMG_JOMAPS from "../../assets/foto_jomaps.jpeg";
 import "./portfolio.css";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 
+const IMG_KLIPER = `${process.env.PUBLIC_URL}/kliper.png`;
+const IMG_GANEX = `${process.env.PUBLIC_URL}/ganex.jpeg`;
+
 const PROJECTS = [
+  {
+    id: 11,
+    title: { en: "Kliper", es: "Kliper" },
+    img: IMG_KLIPER,
+    badge: { en: "Founder · 800+ users", es: "Fundador · +800 usuarios" },
+    description: {
+      en: "Management platform for barbershops and beauty studios that I founded and lead. It centralizes the day-to-day operation of the business — appointments, clients, services and staff — and currently serves a community of more than 800 users.",
+      es: "Plataforma de administración para barberías y sitios de estética que fundé y lidero. Centraliza la operación diaria del negocio — citas, clientes, servicios y personal — y actualmente cuenta con una comunidad de más de 800 usuarios."
+    },
+    technologies: {
+      en: "SaaS | Business management | Bookings | 800+ users",
+      es: "SaaS | Gestión de negocio | Reservas | +800 usuarios"
+    },
+  },
+  {
+    id: 10,
+    title: { en: "Ganex", es: "Ganex" },
+    img: IMG_GANEX,
+    description: {
+      en: "Livestock administration system: full CRUD for herd and animal records, user role and permission management, and centralized control of the ranch operation from a single panel.",
+      es: "Sistema para la administración de ganadería: CRUD completo para el registro del hato y los animales, manejo de roles y permisos de usuario, y control centralizado de la operación desde un solo panel."
+    },
+    technologies: {
+      en: "CRUD | Roles & permissions | Livestock management",
+      es: "CRUD | Roles y permisos | Gestión ganadera"
+    },
+  },
   {
     id: 9,
     title: { en: "Jomaps", es: "Jomaps" },
@@ -188,6 +218,11 @@ const Portfolio = ({ language }) => {
                   className="project-card__image"
                   loading="lazy"
                 />
+                {pro.badge && (
+                  <span className="project-card__badge">
+                    {pro.badge[language] || pro.badge.en}
+                  </span>
+                )}
               </div>
               <div className="project-card__body">
                 <h3 className="project-card__title">{pro.title[language]}</h3>

@@ -34,6 +34,23 @@
   transition: transform 500ms ease;
 }
 
+.project-card__badge {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #171717;
+  background: linear-gradient(135deg, var(--brand-300), var(--brand-500));
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
 .project-card:hover .project-card__image {
   transform: scale(1.05);
 }
