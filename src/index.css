@@ -318,12 +318,28 @@ a {
   }
 }
 
+/* Los elementos .reveal aparecen al entrar al viewport y se re-animan
+   cada vez que vuelven a entrar (controlado por useScrollReveal). */
 .reveal {
   opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1),
+    border-color 250ms ease-in-out,
+    box-shadow 250ms ease-in-out,
+    background 250ms ease-in-out,
+    color 250ms ease-in-out;
 }
-.reveal.show,
-.reveal.visible {
-  animation: fadeUp 0.7s ease-out forwards;
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+  /* el retraso escalonado solo aplica al aparecer, no al ocultarse ni al hover */
+  transition-delay: var(--reveal-delay, 0ms), var(--reveal-delay, 0ms), 0ms, 0ms, 0ms, 0ms;
+}
+/* el reveal fija transform, así que el hover-lift de las cards necesita esta regla */
+.dark-card.reveal.show:hover {
+  transform: translateY(-4px);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./workSection.css";
 import { FiServer, FiLayout, FiCpu, FiCloud } from "react-icons/fi";
 
@@ -65,37 +65,17 @@ const WorkSection = ({ language }) => {
 
   const t = content[language] || content.en;
 
-  useEffect(() => {
-    const cards = document.querySelectorAll(".area-card");
-    if (cards.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    cards.forEach((card) => observer.observe(card));
-    return () => observer.disconnect();
-  }, [language]);
-
   return (
     <section id="sobre-mi" className="about">
       <div className="container">
-        <div className="section-head">
+        <div className="section-head reveal">
           <span className="section-kicker">{t.kicker}</span>
           <h2>{t.title}</h2>
           <span className="gold-divider" />
           <p className="section-desc">{t.description}</p>
         </div>
 
-        <h3 className="about__areas-title">{t.areasTitle}</h3>
+        <h3 className="about__areas-title reveal">{t.areasTitle}</h3>
 
         <div className="about__areas-grid">
           {AREAS.map((area, index) => {
@@ -104,7 +84,7 @@ const WorkSection = ({ language }) => {
               <article
                 className="area-card dark-card reveal"
                 key={area.id}
-                style={{ animationDelay: `${index * 0.1}s` }}
+                style={{ "--reveal-delay": `${index * 90}ms` }}
               >
                 <div className="area-card__top">
                   <span className="area-card__number">

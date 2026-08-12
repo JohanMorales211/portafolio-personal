@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import './certificatesSection.css';
 import { certificatesDataContent } from './certificatesData';
 import { FiExternalLink, FiDownload, FiAward, FiChevronDown, FiChevronUp } from 'react-icons/fi';
@@ -29,31 +29,6 @@ const CertificatesSection = ({ language }) => {
     return groups;
   }, [content.certificates]);
 
-  useEffect(() => {
-    if (!areCertificatesVisible) return;
-
-    const elementsToObserve = document.querySelectorAll(".certificate-card");
-    if (elementsToObserve.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.05 }
-    );
-    elementsToObserve.forEach((el, index) => {
-      el.style.setProperty('--card-index', index.toString());
-      observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, [areCertificatesVisible, groupedAndSortedCertificates, language]);
-
   const buttonText = areCertificatesVisible ?
     (language === 'es' ? 'Ocultar Certificados' : 'Hide Certificates') :
     (language === 'es' ? 'Ver Mis Certificados' : 'View My Certificates');
@@ -65,7 +40,7 @@ const CertificatesSection = ({ language }) => {
   return (
     <section id="certificados" className="certificates">
       <div className="container">
-        <div className="section-head">
+        <div className="section-head reveal">
           <span className="section-kicker">
             {language === 'es' ? 'Credenciales' : 'Credentials'}
           </span>
@@ -77,7 +52,7 @@ const CertificatesSection = ({ language }) => {
         </div>
 
         {content.certificates && content.certificates.length > 0 && (
-          <div className="certificates__toggle-area">
+          <div className="certificates__toggle-area reveal">
             <button onClick={toggleCertificatesVisibility} className="btn btn-outline">
               {buttonText}
               {areCertificatesVisible ? <FiChevronUp /> : <FiChevronDown />}
@@ -93,8 +68,12 @@ const CertificatesSection = ({ language }) => {
                   <FiAward /> {issuer}
                 </h3>
                 <div className="certificate-group__grid">
-                  {certsInGroup.map((cert) => (
-                    <article key={cert.id} className="certificate-card dark-card reveal">
+                  {certsInGroup.map((cert, certIndex) => (
+                    <article
+                      key={cert.id}
+                      className="certificate-card dark-card reveal"
+                      style={{ "--reveal-delay": `${certIndex * 80}ms` }}
+                    >
                       <div className="certificate-card__header">
                         {cert.issuerLogo ? (
                           <img

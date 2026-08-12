@@ -52,7 +52,7 @@ const Contact = ({ language }) => {
   return (
     <section id="contacto" className="contact">
       <div className="container">
-        <div className="contact__card">
+        <div className="contact__card reveal">
           <span className="section-kicker">{t.kicker}</span>
           <h2 className="contact__title">{t.title}</h2>
           <span className="gold-divider" />

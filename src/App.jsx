@@ -10,6 +10,7 @@ import Testimonials from "./components/testimonials/Testimonials";
 import Contact from "./components/contact/Contact";
 import Footer from "./components/footer/Footer";
 import FloatingActionButtons from "./components/floatingActionButtons/FloatingActionButtons";
+import useScrollReveal from "./hooks/useScrollReveal";
 
 const getInitialTheme = () => {
   const stored = localStorage.getItem("theme");
@@ -20,6 +21,8 @@ const getInitialTheme = () => {
 const App = () => {
   const [language, setLanguage] = useState("es");
   const [theme, setTheme] = useState(getInitialTheme);
+
+  useScrollReveal();
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);

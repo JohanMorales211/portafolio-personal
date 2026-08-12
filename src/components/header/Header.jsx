@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import "./header.css";
-import { FiMapPin, FiFileText } from "react-icons/fi";
+import { FiMapPin } from "react-icons/fi";
 import { BsLinkedin } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
-import MyPhoto from "../../assets/foto_mia.jpeg";
+const MyPhoto = `${process.env.PUBLIC_URL}/foto_mia.jpeg`;
 
 const TYPED_WORDS = {
   en: ["Full Stack", "Backend", "Frontend", "Remote"],
@@ -28,7 +28,6 @@ const Header = ({ language }) => {
         location: "Colombia · Remote",
         pitch:
           "I build software solutions for national and international businesses. Available for remote projects with companies and clients.",
-        downloadCV: "Download resume",
         photoAlt: "Photo of Johan Morales",
       },
       es: {
@@ -39,7 +38,6 @@ const Header = ({ language }) => {
         location: "Colombia · Remoto",
         pitch:
           "Desarrollo soluciones de software para negocios nacionales e internacionales. Disponible para proyectos remotos con empresas y clientes.",
-        downloadCV: "Descargar hoja de vida",
         photoAlt: "Foto de Johan Morales",
       },
     }),
@@ -86,7 +84,6 @@ const Header = ({ language }) => {
     return () => clearTimeout(timeoutId);
   }, [language, words]);
 
-  // ==== Animación de desplazamiento al scrollear (parallax + fade) ====
   useEffect(() => {
     const el = contentRef.current;
     if (!el) return;
@@ -122,7 +119,12 @@ const Header = ({ language }) => {
       <div className="container hero__container" ref={contentRef}>
         <div className="hero__photo-column">
           <div className="hero__photo-card">
-            <img src={MyPhoto} alt={t.photoAlt} className="hero__photo" />
+            <img
+              src={MyPhoto}
+              alt={t.photoAlt}
+              className="hero__photo"
+              fetchpriority="high"
+            />
           </div>
           <span className="hero__available-badge">
             <span className="hero__available-dot" />
@@ -166,14 +168,6 @@ const Header = ({ language }) => {
               aria-label="LinkedIn"
             >
               <BsLinkedin />
-            </a>
-            <a
-              href={`${process.env.PUBLIC_URL}/hoja_de_vida.pdf`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-outline hero__cv-btn"
-            >
-              <FiFileText /> {t.downloadCV}
             </a>
           </div>
         </div>

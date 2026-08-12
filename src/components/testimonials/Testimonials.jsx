@@ -100,7 +100,7 @@ const Testimonials = ({ language }) => {
   };
   return (
     <section id="testimonials" className="testimonials-section">
-      <div className="container section-header testimonials-header-override">
+      <div className="container section-header testimonials-header-override reveal">
         <h5 className="section-subtitle">
           {content[language].sectionSubtitle}
         </h5>
@@ -109,7 +109,7 @@ const Testimonials = ({ language }) => {
           <span className="title-dot testimonials-title-dot">.</span>
         </h2>
       </div>
-      <div className="container testimonials__container_wrapper">
+      <div className="container testimonials__container_wrapper reveal">
         <Swiper
           className="testimonials__swiper-container"
           modules={[Pagination, Navigation]}

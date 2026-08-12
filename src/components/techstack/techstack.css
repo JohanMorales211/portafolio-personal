@@ -16,7 +16,8 @@
   display: flex;
   gap: 1.25rem;
   width: max-content;
-  animation: marqueeScroll 40s linear infinite;
+  animation: marqueeScroll 80s linear infinite;
+  will-change: transform;
 }
 
 .techstack__marquee:hover .techstack__track {
@@ -28,7 +29,7 @@
     transform: translateX(0);
   }
   to {
-    /* la lista está duplicada: -50% = un ciclo completo sin salto */
+    /* la lista está repetida 4 veces: -50% = 2 copias exactas, sin salto ni hueco */
     transform: translateX(-50%);
   }
 }
@@ -76,6 +77,11 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+
+.techstack__icon {
+  width: 100%;
+  height: 100%;
 }
 
 .techstack__card span {

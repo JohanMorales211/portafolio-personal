@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import IMG_CHEFSITO from "../../assets/logo_chefsito.png";
 import IMG_NU_CALCULATOR from "../../assets/imagen_nu.jpg";
@@ -164,30 +164,10 @@ const Portfolio = ({ language }) => {
     setUpdateKey((prevKey) => prevKey + 1);
   };
 
-  useEffect(() => {
-    const portfolioItems = document.querySelectorAll(".project-card");
-    if (portfolioItems.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    portfolioItems.forEach((item) => observer.observe(item));
-    return () => observer.disconnect();
-  }, [updateKey, projectsToShow.length]);
-
   return (
     <section id="proyectos" className="projects">
       <div className="container">
-        <div className="section-head">
+        <div className="section-head reveal">
           <span className="section-kicker">{t.kicker}</span>
           <h2>{t.sectionTitle}</h2>
           <span className="gold-divider" />
@@ -199,7 +179,7 @@ const Portfolio = ({ language }) => {
             <article
               className="project-card dark-card reveal"
               key={pro.id}
-              style={{ animationDelay: `${(index % 2) * 0.1}s` }}
+              style={{ "--reveal-delay": `${(index % 2) * 100}ms` }}
             >
               <div className="project-card__image-wrapper">
                 <img
@@ -247,7 +227,7 @@ const Portfolio = ({ language }) => {
         </div>
 
         {PROJECTS.length > projectsToDisplayCount && (
-          <div className="projects__more">
+          <div className="projects__more reveal">
             <button className="btn btn-outline" onClick={handleClickShowMore}>
               {showAllProjects ? t.showLess : t.showAll}
             </button>

@@ -10,10 +10,6 @@
   flex-direction: column;
 }
 
-.project-card.reveal.show {
-  animation-name: fadeUp;
-}
-
 .project-card__image-wrapper {
   position: relative;
   aspect-ratio: 16 / 9;

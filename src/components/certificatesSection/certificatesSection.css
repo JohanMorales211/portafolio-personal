@@ -33,11 +33,6 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  animation-delay: calc(var(--card-index, 0) * 0.08s);
-}
-
-.certificate-card.reveal.show {
-  animation-name: fadeUp;
 }
 
 .certificate-card__header {

@@ -21,10 +21,6 @@
   flex-direction: column;
 }
 
-.area-card.reveal.show {
-  animation-name: fadeUp;
-}
-
 .area-card__top {
   display: flex;
   align-items: center;
