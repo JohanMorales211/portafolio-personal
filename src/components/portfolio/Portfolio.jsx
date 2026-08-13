@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import IMG_CHEFSITO from "../../assets/logo_chefsito.png";
+import IMG_CHEFSITO from "../../assets/logo_chefsito.jpg";
 import IMG_NU_CALCULATOR from "../../assets/imagen_nu.jpg";
-import IMG_REAL_TIME_TWEET from "../../assets/tweets_x.png";
-import IMG_FILE_EXPLORER from "../../assets/file_explorer.png";
-import IMG_SPOTIFY_TIME_FREE from "../../assets/spotify_time_free.png";
-import IMG_FILMIX from "../../assets/filmix.png";
-import IMG_LINGUAI from "../../assets/logo_languAI.png";
+import IMG_REAL_TIME_TWEET from "../../assets/tweets_x.jpg";
+import IMG_FILE_EXPLORER from "../../assets/file_explorer.jpg";
+import IMG_SPOTIFY_TIME_FREE from "../../assets/spotify_time_free.jpg";
+import IMG_FILMIX from "../../assets/filmix.jpg";
+import IMG_LINGUAI from "../../assets/logo_languAI.jpg";
 import IMG_JOMAPS from "../../assets/foto_jomaps.jpeg";
 
 import "./portfolio.css";

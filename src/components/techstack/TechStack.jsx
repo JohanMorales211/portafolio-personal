@@ -1,25 +1,22 @@
 import React from "react";
 import "./techstack.css";
-import { FaAws } from "react-icons/fa";
+import { FaAws, FaJava, FaDocker, FaReact } from "react-icons/fa";
 import { SiKubernetes } from "react-icons/si";
 
-import java_logo from "../../assets/logos/java_logo.png";
 import python_logo from "../../assets/logos/python_logo.png";
 import git_logo from "../../assets/logos/git_logo.png";
 import sql_logo from "../../assets/logos/sql_logo.png";
-import docker_logo from "../../assets/logos/docker_logo.png";
-import react_logo from "../../assets/logos/react_logo.png";
 import angular_logo from "../../assets/logos/angular_logo.png";
 
 const TECHNOLOGIES = [
-  { name: "Java", logo: java_logo },
+  { name: "Java", icon: FaJava, color: "#E76F00" },
   { name: "Python", logo: python_logo },
   { name: "SQL", logo: sql_logo },
-  { name: "AWS", icon: FaAws, color: "#FF9900" },
-  { name: "Docker", logo: docker_logo },
-  { name: "Kubernetes", icon: SiKubernetes, color: "#326CE5" },
+  { name: "AWS", icon: FaAws, color: "#E88A00", colorDark: "#FF9900" },
+  { name: "Docker", icon: FaDocker, color: "#1D7FD1", colorDark: "#2496ED" },
+  { name: "Kubernetes", icon: SiKubernetes, color: "#326CE5", colorDark: "#4C87F5" },
   { name: "Git", logo: git_logo },
-  { name: "React", logo: react_logo },
+  { name: "React", icon: FaReact, color: "#0B8FAC", colorDark: "#61DAFB" },
   { name: "Angular", logo: angular_logo },
 ];
 
@@ -37,9 +34,6 @@ const TechStack = ({ language }) => {
 
   const t = content[language] || content.en;
 
-  // La lista se repite 4 veces para que el ancho del track siempre supere
-  // el viewport (incluso en pantallas anchas) y el bucle sea continuo sin huecos:
-  // la animación desplaza -50% (2 copias exactas), por lo que el reinicio es invisible.
   const marqueeItems = [
     ...TECHNOLOGIES,
     ...TECHNOLOGIES,
@@ -69,7 +63,10 @@ const TechStack = ({ language }) => {
                 {tech.icon ? (
                   <tech.icon
                     className="techstack__icon"
-                    style={{ color: tech.color }}
+                    style={{
+                      "--icon-color": tech.color,
+                      "--icon-color-dark": tech.colorDark || tech.color,
+                    }}
                     aria-label={index < TECHNOLOGIES.length ? `${tech.name} logo` : undefined}
                   />
                 ) : (

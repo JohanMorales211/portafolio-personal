@@ -74,6 +74,11 @@
 .techstack__icon {
   width: 100%;
   height: 100%;
+  color: var(--icon-color);
+}
+
+[data-theme="dark"] .techstack__icon {
+  color: var(--icon-color-dark);
 }
 
 .techstack__card span {

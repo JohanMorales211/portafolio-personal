@@ -6,7 +6,7 @@ const NAV_LINKS = [
   { id: "inicio", en: "Home", es: "Inicio" },
   { id: "tecnologias", en: "Tech Stack", es: "Tecnologías" },
   { id: "sobre-mi", en: "About", es: "Sobre mí" },
-  { id: "certificados", en: "Certificates", es: "Certificados" },
+  { id: "experiencia", en: "Experience", es: "Experiencia" },
   { id: "proyectos", en: "Projects", es: "Proyectos" },
   { id: "contacto", en: "Contact", es: "Contacto" },
 ];

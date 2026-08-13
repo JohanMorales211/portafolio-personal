@@ -318,6 +318,12 @@ a {
   }
 }
 
+/* Punto latiendo de los distintivos "Actual" */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
 /* Los elementos .reveal aparecen al entrar al viewport y se re-animan
    cada vez que vuelven a entrar (controlado por useScrollReveal). */
 .reveal {

@@ -1,14 +1,5 @@
 import { useEffect } from "react";
 
-/**
- * Observa todos los elementos con la clase `.reveal` y les alterna la clase
- * `.show` al entrar/salir del viewport, de modo que la animación de aparición
- * se repite cada vez que el usuario vuelve a scrollear hasta ellos.
- *
- * Un MutationObserver re-registra los elementos que se montan después
- * (cambio de idioma, "Mostrar más" proyectos, certificados, etc.).
- * IntersectionObserver.observe es idempotente, así que re-observar es seguro.
- */
 const useScrollReveal = () => {
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -20,23 +11,36 @@ const useScrollReveal = () => {
       { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
     );
 
-    let rafId = 0;
-    const observeAll = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    const observed = new WeakSet();
+    let knownCount = -1;
+    let timeoutId = 0;
+
+    const scan = () => {
+      const elements = document.querySelectorAll(".reveal");
+      if (elements.length === knownCount) return;
+      knownCount = elements.length;
+
+      elements.forEach((el) => {
+        if (observed.has(el)) return;
+        observed.add(el);
+        io.observe(el);
       });
     };
 
-    observeAll();
+    const scheduleScan = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(scan, 150);
+    };
 
-    const mo = new MutationObserver(observeAll);
+    scan();
+
+    const mo = new MutationObserver(scheduleScan);
     mo.observe(document.body, { childList: true, subtree: true });
 
     return () => {
+      clearTimeout(timeoutId);
       mo.disconnect();
       io.disconnect();
-      cancelAnimationFrame(rafId);
     };
   }, []);
 };

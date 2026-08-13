@@ -4,7 +4,7 @@ import ParticlesBackground from "./components/particles/ParticlesBackground";
 import Header from "./components/header/Header";
 import TechStack from "./components/techstack/TechStack";
 import WorkSection from "./components/workSection/WorkSection";
-import CertificatesSection from "./components/certificatesSection/CertificatesSection";
+import Experience from "./components/experience/Experience";
 import Portfolio from "./components/portfolio/Portfolio";
 import Testimonials from "./components/testimonials/Testimonials";
 import Contact from "./components/contact/Contact";
@@ -42,7 +42,7 @@ const App = () => {
       <Header language={language} />
       <TechStack language={language} />
       <WorkSection language={language} />
-      <CertificatesSection language={language} />
+      <Experience language={language} />
       <Portfolio language={language} />
       <Testimonials language={language} />
       <Contact language={language} />

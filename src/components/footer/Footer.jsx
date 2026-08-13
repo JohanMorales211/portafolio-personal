@@ -11,7 +11,7 @@ const Footer = ({ language }) => {
       home: "Home",
       tech: "Tech Stack",
       about: "About",
-      certificates: "Certificates",
+      experience: "Experience",
       projects: "Projects",
       contact: "Contact",
       copyright: "All rights reserved.",
@@ -21,7 +21,7 @@ const Footer = ({ language }) => {
       home: "Inicio",
       tech: "Tecnologías",
       about: "Sobre mí",
-      certificates: "Certificados",
+      experience: "Experiencia",
       projects: "Proyectos",
       contact: "Contacto",
       copyright: "Todos los derechos reservados.",
@@ -42,7 +42,7 @@ const Footer = ({ language }) => {
           <li><a href="#inicio">{t.home}</a></li>
           <li><a href="#tecnologias">{t.tech}</a></li>
           <li><a href="#sobre-mi">{t.about}</a></li>
-          <li><a href="#certificados">{t.certificates}</a></li>
+          <li><a href="#experiencia">{t.experience}</a></li>
           <li><a href="#proyectos">{t.projects}</a></li>
           <li><a href="#contacto">{t.contact}</a></li>
         </ul>

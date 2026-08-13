@@ -21,7 +21,6 @@ const Header = ({ language }) => {
   const content = useMemo(
     () => ({
       en: {
-        available: "AVAILABLE",
         greeting: "Hi, I'm",
         firstName: "Johan",
         lastName: "Morales",
@@ -31,7 +30,6 @@ const Header = ({ language }) => {
         photoAlt: "Photo of Johan Morales",
       },
       es: {
-        available: "DISPONIBLE",
         greeting: "Hola, soy",
         firstName: "Johan",
         lastName: "Morales",
@@ -126,10 +124,6 @@ const Header = ({ language }) => {
               fetchpriority="high"
             />
           </div>
-          <span className="hero__available-badge">
-            <span className="hero__available-dot" />
-            {t.available}
-          </span>
         </div>
 
         <div className="hero__text-column">
