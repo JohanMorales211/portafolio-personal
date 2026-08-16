@@ -1,31 +1,21 @@
 {
   "files": {
-    "main.css": "/portafolio-personal/static/css/main.d3467e10.css",
-    "main.js": "/portafolio-personal/static/js/main.b9b3c395.js",
-    "static/media/file_explorer.png": "/portafolio-personal/static/media/file_explorer.e4fe79b4ff6206f4ffc3.png",
-    "static/media/logo_languAI.png": "/portafolio-personal/static/media/logo_languAI.5ebe9fc3372c58a77c33.png",
-    "static/media/filmix.png": "/portafolio-personal/static/media/filmix.7c0664629513a0b11448.png",
-    "static/media/logo_chefsito.png": "/portafolio-personal/static/media/logo_chefsito.848a6ad502f4ff658439.png",
-    "static/media/tweets_x.png": "/portafolio-personal/static/media/tweets_x.1050f4206cd48fefd28c.png",
-    "static/media/aws_partner.pdf": "/portafolio-personal/static/media/aws_partner.ec359315538cc21a65b9.pdf",
-    "static/media/aws_cloud_essentials.pdf": "/portafolio-personal/static/media/aws_cloud_essentials.8fd4e2bc06730678d807.pdf",
-    "static/media/aws_observability.pdf": "/portafolio-personal/static/media/aws_observability.c569231ce3b037f56c28.pdf",
-    "static/media/python_logo.png": "/portafolio-personal/static/media/python_logo.397eefce24a7451dd71c.png",
+    "main.css": "/portafolio-personal/static/css/main.eb7c05a1.css",
+    "main.js": "/portafolio-personal/static/js/main.76d4a0d1.js",
     "static/media/foto_jomaps.jpeg": "/portafolio-personal/static/media/foto_jomaps.f708a904f84a1ee0e348.jpeg",
-    "static/media/spotify_time_free.png": "/portafolio-personal/static/media/spotify_time_free.07c5745ac61d132b16d8.png",
-    "static/media/angular_logo.png": "/portafolio-personal/static/media/angular_logo.d1e2466f600337669292.png",
     "static/media/imagen_nu.jpg": "/portafolio-personal/static/media/imagen_nu.a1145e21d87ab1d2ca53.jpg",
-    "static/media/sql_logo.png": "/portafolio-personal/static/media/sql_logo.f651897a8c77b74a4e5f.png",
-    "static/media/react_logo.png": "/portafolio-personal/static/media/react_logo.a347d71fba938b010088.png",
-    "static/media/java_logo.png": "/portafolio-personal/static/media/java_logo.8a8b29e707f1b2c97a15.png",
-    "static/media/hackerank_logo.png": "/portafolio-personal/static/media/hackerank_logo.eab675a51239a438321a.png",
-    "static/media/scrum_fundamentals.jpg": "/portafolio-personal/static/media/scrum_fundamentals.fc110aa77669580915d6.jpg",
-    "index.html": "/portafolio-personal/index.html",
-    "main.d3467e10.css.map": "/portafolio-personal/static/css/main.d3467e10.css.map",
-    "main.b9b3c395.js.map": "/portafolio-personal/static/js/main.b9b3c395.js.map"
+    "static/media/logo_languAI.jpg": "/portafolio-personal/static/media/logo_languAI.37d3ddf6acc14a49369d.jpg",
+    "static/media/logo_chefsito.jpg": "/portafolio-personal/static/media/logo_chefsito.80269a013db57f1c7c31.jpg",
+    "static/media/file_explorer.jpg": "/portafolio-personal/static/media/file_explorer.8a7cdda7c492e866dfcf.jpg",
+    "static/media/filmix.jpg": "/portafolio-personal/static/media/filmix.83f94211c54ee3f54aa5.jpg",
+    "static/media/tweets_x.jpg": "/portafolio-personal/static/media/tweets_x.de646c9d1070b17a1426.jpg",
+    "static/media/spotify_time_free.jpg": "/portafolio-personal/static/media/spotify_time_free.004b3192a6bdde28790c.jpg",
+    "static/media/angular_logo.png": "/portafolio-personal/static/media/angular_logo.4f95377edb6137c308f2.png",
+    "static/media/sql_logo.png": "/portafolio-personal/static/media/sql_logo.c99cb9b4fe7489c306d2.png",
+    "index.html": "/portafolio-personal/index.html"
   },
   "entrypoints": [
-    "static/css/main.d3467e10.css",
-    "static/js/main.b9b3c395.js"
+    "static/css/main.eb7c05a1.css",
+    "static/js/main.76d4a0d1.js"
   ]
 }
