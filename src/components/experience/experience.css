@@ -390,3 +390,17 @@
     justify-content: center;
   }
 }
+
+.timeline__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--brand-ink);
+}
+
+.timeline__link:hover {
+  color: var(--brand-ink-strong);
+}

@@ -9,6 +9,7 @@ import {
   FiMapPin,
   FiChevronLeft,
   FiChevronRight,
+  FiExternalLink,
 } from "react-icons/fi";
 import { FaCrown } from "react-icons/fa";
 
@@ -29,12 +30,12 @@ const EXPERIENCES = [
       en: "Development & Automation Engineer · Risk Analyst",
     },
     description: {
-      es: "Responsable del desarrollo de soluciones internas, análisis de riesgos y liderazgo de iniciativas de automatización para optimizar procesos operativos y apoyar la toma de decisiones en la empresa.",
-      en: "Responsible for building internal solutions, risk analysis and leading automation initiatives to optimize operational processes and support company decision-making.",
+      es: "Responsable del desarrollo de soluciones internas, análisis de riesgos y liderazgo de iniciativas de automatización. Construyo en equipo las plataformas de la operación — Zenit Integrity, Zenit y Zenit Informes — con esquemas en PostgreSQL, contenedores Docker y despliegue en Kubernetes.",
+      en: "Responsible for building internal solutions, risk analysis and leading automation initiatives. I build the operation's platforms with the team — Zenit Integrity, Zenit and Zenit Informes — with PostgreSQL schemas, Docker containers and Kubernetes deployment.",
     },
     skills: {
-      es: ["Desarrollo de software", "Operaciones de Riesgo", "Automatización"],
-      en: ["Software development", "Risk operations", "Automation"],
+      es: ["Desarrollo de software", "Operaciones de Riesgo", "Automatización", "React 19", "Flask", "Kubernetes"],
+      en: ["Software development", "Risk operations", "Automation", "React 19", "Flask", "Kubernetes"],
     },
   },
   {
@@ -47,6 +48,7 @@ const EXPERIENCES = [
     location: "Colombia",
     mode: { es: "En remoto", en: "Remote" },
     highlight: true,
+    link: "https://kliper.com.co/",
     role: { es: "Fundador & CEO", en: "Founder & CEO" },
     description: {
       es: "La industria de la barbería está llena de talento, pero carecía de las herramientas digitales correctas para competir en el mercado actual. Por eso fundé Kliper, hoy con una comunidad de más de 800 usuarios.",
@@ -308,6 +310,17 @@ const Experience = ({ language }) => {
                       <p className="timeline__description">
                         {job.description[language] || job.description.en}
                       </p>
+                    )}
+
+                    {job.link && (
+                      <a
+                        className="timeline__link"
+                        href={job.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FiExternalLink /> {job.link.replace(/^https?:\/\/|\/$/g, "")}
+                      </a>
                     )}
 
                     <div className="timeline__skills">

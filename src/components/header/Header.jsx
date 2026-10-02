@@ -3,7 +3,6 @@ import "./header.css";
 import { FiMapPin } from "react-icons/fi";
 import { BsLinkedin } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
-const MyPhoto = `${process.env.PUBLIC_URL}/foto_mia.jpeg`;
 
 const TYPED_WORDS = {
   en: ["Full Stack", "Backend", "Frontend", "Remote"],
@@ -27,7 +26,6 @@ const Header = ({ language }) => {
         location: "Colombia · Remote",
         pitch:
           "I build software solutions for national and international businesses. Available for remote projects with companies and clients.",
-        photoAlt: "Photo of Johan Morales",
       },
       es: {
         greeting: "Hola, soy",
@@ -36,7 +34,6 @@ const Header = ({ language }) => {
         location: "Colombia · Remoto",
         pitch:
           "Desarrollo soluciones de software para negocios nacionales e internacionales. Disponible para proyectos remotos con empresas y clientes.",
-        photoAlt: "Foto de Johan Morales",
       },
     }),
     []
@@ -115,22 +112,13 @@ const Header = ({ language }) => {
   return (
     <header id="inicio" className="hero">
       <div className="container hero__container" ref={contentRef}>
-        <div className="hero__photo-column">
-          <div className="hero__photo-card">
-            <img
-              src={MyPhoto}
-              alt={t.photoAlt}
-              className="hero__photo"
-              fetchpriority="high"
-            />
-          </div>
-        </div>
-
         <div className="hero__text-column">
+          <p className="hero__greeting">{t.greeting}</p>
+
           <h1 className="hero__title">
-            {t.greeting}
+            {t.firstName}
             <br />
-            {t.firstName} <span className="hero__title-gold">{t.lastName}</span>
+            <span className="hero__title-outline">{t.lastName}</span>
           </h1>
 
           <p className="hero__typed" aria-live="polite">

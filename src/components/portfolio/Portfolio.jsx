@@ -8,9 +8,12 @@ import IMG_SPOTIFY_TIME_FREE from "../../assets/spotify_time_free.jpg";
 import IMG_FILMIX from "../../assets/filmix.jpg";
 import IMG_LINGUAI from "../../assets/logo_languAI.jpg";
 import IMG_JOMAPS from "../../assets/foto_jomaps.jpeg";
+import IMG_ZENIT_INTEGRITY from "../../assets/zenit-integrity-marca.png";
+import IMG_ZENIT from "../../assets/zenit-marca.png";
+import IMG_ZENIT_INFORMES from "../../assets/zenit-informes-marca.png";
 
 import "./portfolio.css";
-import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { FiGithub, FiExternalLink, FiLock } from "react-icons/fi";
 
 const IMG_KLIPER = `${process.env.PUBLIC_URL}/kliper.png`;
 const IMG_GANEX = `${process.env.PUBLIC_URL}/ganex.jpeg`;
@@ -29,6 +32,71 @@ const PROJECTS = [
       en: "SaaS | Business management | Bookings | 800+ users",
       es: "SaaS | Gestión de negocio | Reservas | +800 usuarios"
     },
+    metrics: [
+      { value: "+1K", label: { en: "appointments booked", es: "citas agendadas" } },
+      { value: "+500", label: { en: "active users", es: "usuarios activos" } },
+      { value: "+800", label: { en: "community users", es: "usuarios en la comunidad" } },
+    ],
+    siteLink: "https://kliper.com.co/",
+  },
+  {
+    id: 12,
+    title: { en: "Zenit Integrity", es: "Zenit Integrity" },
+    img: IMG_ZENIT_INTEGRITY,
+    isLogo: true,
+    badge: { en: "In production · Real time", es: "En producción · Tiempo real" },
+    description: {
+      en: "Integrity monitoring for sports betting, built from the ground up as a team. It monitors odds from 5 bookmakers in real time and flags patterns associated with match-fixing through an alert engine with 8 configurable rule types — sharp movement, divergence from consensus, odds withdrawal and spread widening — each with its own threshold, window and cooldown.",
+      es: "Monitoreo de integridad en apuestas deportivas, construido desde cero en equipo. Vigila en tiempo real las cuotas de 5 casas de apuestas y detecta patrones asociados a manipulación de resultados con un motor de 8 tipos de regla configurables — movimiento brusco, divergencia contra el consenso, retiro de cuota y ensanchamiento de spread — cada una con su umbral, ventana y enfriamiento."
+    },
+    metrics: [
+      { value: "2.4M", label: { en: "odds records", es: "registros de cuotas" } },
+      { value: "153K", label: { en: "matches covered", es: "partidos cubiertos" } },
+      { value: "211K", label: { en: "alerts issued", es: "alertas emitidas" } },
+      { value: "1,488", label: { en: "days of history", es: "días de histórico" } },
+    ],
+    technologies: {
+      en: "Python | Flask | WebSockets | SSE | React 19 | TypeScript | PostgreSQL | Alembic | Docker | Kubernetes",
+      es: "Python | Flask | WebSockets | SSE | React 19 | TypeScript | PostgreSQL | Alembic | Docker | Kubernetes"
+    },
+    isPrivate: true,
+  },
+  {
+    id: 13,
+    title: { en: "Zenit", es: "Zenit" },
+    img: IMG_ZENIT,
+    isLogo: true,
+    badge: { en: "In production · Internal tool", es: "En producción · Herramienta interna" },
+    description: {
+      en: "The platform the support team uses to look up player accounts, process withdrawals across four payment gateways and audit casino sessions with GGR and RTP. It includes batch lookups, document verification and direct export to Excel — replacing the jump between five systems with a single lookup.",
+      es: "La plataforma con la que el área de soporte consulta cuentas de jugadores, gestiona retiros en cuatro pasarelas de pago y audita sesiones de casino con GGR y RTP. Incluye búsqueda masiva por lotes, verificación documental y exportación directa a Excel — reemplaza el salto entre cinco sistemas por una sola consulta."
+    },
+    technologies: {
+      en: "Python | Flask | React 19 | TypeScript | Vite | Tailwind | PostgreSQL | JWT | ExcelJS",
+      es: "Python | Flask | React 19 | TypeScript | Vite | Tailwind | PostgreSQL | JWT | ExcelJS"
+    },
+    isPrivate: true,
+  },
+  {
+    id: 14,
+    title: { en: "Zenit Informes", es: "Zenit Informes" },
+    img: IMG_ZENIT_INFORMES,
+    isLogo: true,
+    badge: { en: "In production · Automation", es: "En producción · Automatización" },
+    description: {
+      en: "Consolidates the reports of 5 operations in different countries, bringing together almost 20 million records in total by integrating with external back offices. It queries the APIs, cross-references the data and delivers formatted reports — GGR, controls, incidents, sessions and transfers — in one click, turning hours of manual Excel work into an automated process.",
+      es: "Consolida los informes de 5 operaciones en distintos países, reuniendo casi 20 millones de datos en total al integrarse con backoffices externos. Consulta las APIs, cruza los datos y entrega los reportes ya formateados — GGR, controles, incidencias, sesiones y transferencias — en un clic, convirtiendo horas de armado manual en Excel en un proceso automático."
+    },
+    metrics: [
+      { value: "5", label: { en: "country operations", es: "operaciones por país" } },
+      { value: "~20M", label: { en: "records consolidated", es: "datos consolidados" } },
+      { value: "1", label: { en: "click per report", es: "clic por informe" } },
+    ],
+    technologies: {
+      en: "Python | Flask | pandas | React 19 | TypeScript | Tailwind | PostgreSQL 16 | Docker | Nginx | Gunicorn",
+      es: "Python | Flask | pandas | React 19 | TypeScript | Tailwind | PostgreSQL 16 | Docker | Nginx | Gunicorn"
+    },
+    isPrivate: true,
   },
   {
     id: 10,
@@ -170,6 +238,8 @@ const Portfolio = ({ language }) => {
       showLess: "Show Less",
       githubRepo: "GitHub",
       demo: "Live Demo",
+      visitSite: "Visit platform",
+      privateCode: "Private code · Internal use",
     },
     es: {
       kicker: "Portafolio",
@@ -179,12 +249,14 @@ const Portfolio = ({ language }) => {
       showLess: "Mostrar Menos",
       githubRepo: "GitHub",
       demo: "Demo en Vivo",
+      visitSite: "Visitar plataforma",
+      privateCode: "Código privado · Uso interno",
     },
   };
 
   const t = sectionContent[language] || sectionContent.en;
 
-  const projectsToDisplayCount = 4;
+  const projectsToDisplayCount = 6;
   const projectsToShow = showAllProjects
     ? PROJECTS
     : PROJECTS.slice(0, projectsToDisplayCount);
@@ -215,7 +287,9 @@ const Portfolio = ({ language }) => {
                 <img
                   src={pro.img}
                   alt={pro.title[language]}
-                  className="project-card__image"
+                  className={`project-card__image ${
+                    pro.isLogo ? "project-card__image--logo" : ""
+                  }`}
                   loading="lazy"
                 />
                 {pro.badge && (
@@ -227,6 +301,16 @@ const Portfolio = ({ language }) => {
               <div className="project-card__body">
                 <h3 className="project-card__title">{pro.title[language]}</h3>
                 <p className="project-card__description">{pro.description[language]}</p>
+                {pro.metrics && (
+                  <ul className="project-card__metrics">
+                    {pro.metrics.map((metric) => (
+                      <li key={metric.value}>
+                        <strong>{metric.value}</strong>
+                        <span>{metric.label[language] || metric.label.en}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 <div className="project-card__tags">
                   {pro.technologies[language].split(" | ").map((tech) => (
                     <span key={tech} className="gold-pill">{tech}</span>
@@ -243,6 +327,22 @@ const Portfolio = ({ language }) => {
                     >
                       <FiGithub /> {t.githubRepo}
                     </a>
+                  )}
+                  {pro.siteLink && (
+                    <a
+                      href={pro.siteLink}
+                      className="btn btn-contrast"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${t.visitSite} - ${pro.title[language]}`}
+                    >
+                      <FiExternalLink /> {t.visitSite}
+                    </a>
+                  )}
+                  {pro.isPrivate && (
+                    <span className="project-card__private">
+                      <FiLock /> {t.privateCode}
+                    </span>
                   )}
                   {pro.demoLink && (
                     <a
